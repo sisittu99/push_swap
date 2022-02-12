@@ -3,37 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcerchi <mcerchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/12 13:23:41 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/12 16:27:11 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-int	*write_array(int argc, char **argv)
+t_list	*write_lst(int argc, char **argv)
 {
-	int		*arr;
+	t_list	*tmp;
+	t_list	*tmp2;
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	arr = (int *) malloc (sizeof(int) * argc);
-	if (!arr)
-		ft_display_exit();
+	tmp = NULL;
 	while (i < argc)
 	{
-		arr[i] = ft_atoi(argv[i + 1]);
+		tmp2 = ft_lstnew(ft_atoi(argv[i + 1]));
+		if (tmp != NULL)
+			tmp->next = tmp2;
 		while (j++ < i)
 		{
-			if (arr[j] == arr[i])
+			if (tmp2->content == tmp)
 			{
-				free(arr);
 				ft_display_exit();
 			}
 		}
+		tmp = tmp2;
 		j = 0;
 		i++;
 	}
@@ -48,17 +49,12 @@ int	*write_array(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	int	*stack_a;
-	int	*stack_b;
+	t_list	*stack_a;
+	t_list	**stack_b;
 
 	if (argc < 3)
 		ft_display_exit();
-	stack_a = write_array(argc, argv);
-	stack_b = (int *) malloc (sizeof(int) * argc);
-	if (!stack_b)
-	{
-		free(stack_a);
-		ft_display_exit();
-	}
-
+	stack_a = write_lst(argc, argv);
+	stack_b = ft_lstnew(0);
+	return(0);
 }
