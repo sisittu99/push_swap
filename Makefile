@@ -1,6 +1,18 @@
-NAME = pushe
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/13 16:37:50 by fdrudi            #+#    #+#              #
+#    Updated: 2022/02/13 18:28:15 by fdrudi           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC = push_swap.c
+NAME = push_swap
+
+SRC = push_swap.c utils.c operations_one.c operations_two.c operations_three.c\
 
 HDRS = ./libft/libft.h
 
