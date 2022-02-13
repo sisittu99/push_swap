@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/13 11:23:42 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/13 14:23:13 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,19 +150,17 @@ void	ft_lst_order(t_list **stack_a)
 	ft_display_exit();
 }
 
-void	ft_sa(t_list **stack_a)
+void	ft_rra(t_list **stack_a)
 {
-	int		i;
-	t_list	*tmp;
+	t_list	*last;
 
-	tmp = *stack_a;
-	i = 0;
-	tmp = tmp->next;
-	i = tmp->content;
-	tmp->content = (*stack_a)->content;
-	(*stack_a)->content = i;
-	write(1, "sa\n", 3);
-	return ;
+	last = *stack_a;
+	while ((last->next)->next != NULL)
+		last = last->next;
+	(last->next)->next = *stack_a;
+	*stack_a = (last->next)->next;
+	last->next = NULL;
+	write(1, "rra\n", 4);
 }
 
 void	write_lst(t_list **stack_a, int argc, char **argv)
@@ -187,7 +185,7 @@ void	lst_display(t_list *stack_a)
 	printf("\n");
 	while (stack_a != NULL)
 	{
-		printf("|%d| -> ", stack_a->content);0
+		printf("|%d| -> ", stack_a->content);
 		stack_a = stack_a->next;
 	}
 	printf("NULL\n");
@@ -204,7 +202,7 @@ int	main(int argc, char **argv)
 		ft_display_exit();
 	write_lst(&stack_a, argc, argv);
 	lst_display(stack_a);
-	ft_sa(&stack_a);
+	ft_rra(&stack_a);
 	lst_display(stack_a);
 	return (0);
 }

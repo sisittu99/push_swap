@@ -6,89 +6,85 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 13:18:25 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/13 10:46:28 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/13 14:10:42 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "./libft/libft.h"
+
 void	ft_sa(t_list **stack_a)
 {
-	int		i;
 	t_list	*tmp;
+	t_list	*tmp2;
 
 	tmp = *stack_a;
-	i = 0;
-	tmp = tmp->next;
-	i = tmp->content;
-	tmp->content = (*stack_a)->content;
-	(*stack_a)->content = i;
+	tmp2 = tmp->next;
+	*stack_a = tmp2;
+	tmp->next = tmp2->next;
+	tmp2->next = tmp;
 	write(1, "sa\n", 3);
 	return ;
 }
 
 void	ft_sb(t_list **stack_b)
 {
-	int		i;
 	t_list	*tmp;
+	t_list	*tmp2;
 
 	tmp = *stack_b;
-	i = 0;
-	tmp = tmp->next;
-	i = tmp->content;
-	tmp->content = (*stack_b)->content;
-	(*stack_b)->content = i;
+	tmp2 = tmp->next;
+	*stack_b = tmp2;
+	tmp->next = tmp2->next;
+	tmp2->next = tmp;
 	write(1, "sb\n", 3);
 	return ;
 }
 
 void	ft_ss(t_list **stack_a, t_list **stack_b)
 {
-	int		i;
 	t_list	*tmp;
+	t_list	*tmp2;
 
 	tmp = *stack_a;
-	i = 0;
-	tmp = tmp->next;
-	i = tmp->content;
-	tmp->content = (*stack_a)->content;
-	(*stack_a)->content = i;
+	tmp2 = tmp->next;
+	*stack_a = tmp2;
+	tmp->next = tmp2->next;
+	tmp2->next = tmp;
+	tmp = NULL;
+	tmp2 = NULL;
 	tmp = *stack_b;
-	i = 0;
-	tmp = tmp->next;
-	i = tmp->content;
-	tmp->content = (*stack_b)->content;
-	(*stack_b)->content = i;
+	tmp2 = tmp->next;
+	*stack_b = tmp2;
+	tmp->next = tmp2->next;
+	tmp2->next = tmp;
 	write(1, "ss\n", 3);
 	return ;
 }
 
-void	ft_pa(int *stack_a, int *stack_b)
+void	ft_pa(t_list **stack_b, t_list **stack_a)
 {
-	int	tmp;
-	int	len;
+	t_list	*tmp;
 
-	len = 0;
-	while (stack_a[len] != NULL)
-		len++;
-	tmp = stack_a[len - 1];
-	if (!stack_b)
+	if (*stack_b == NULL)
 		return ;
-	stack_a[len + 1] = NULL;
-	while (len > 0)
-	{
-		stack_a[len--] = tmp;
-		tmp = stack_a[len - 1];
-	}
-	stack_a[0] = stack_b[0];
-	while (stack_b[len] != NULL)
-	{
-		stack_b
-	}
+	tmp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	tmp->next = *stack_a;
+	*stack_a = tmp;
 	write(1, "pa\n", 3);
+	return ;
 }
 
-void	*ft_pb(int *stack_a, int *stack_b)
+void	ft_pb(t_list **stack_a, t_list **stack_b)
 {
-	tmp
-	write(1, "pb\n", 3);
-}
+	t_list	*tmp;
 
+	if (*stack_a == NULL)
+		return ;
+	tmp = *stack_a;
+	*stack_a = (*stack_a)->next;
+	tmp->next = *stack_b;
+	*stack_b = tmp;
+	write(1, "pb\n", 3);
+	return ;
+}
