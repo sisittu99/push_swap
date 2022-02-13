@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/12 19:40:56 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/13 11:23:42 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,18 +122,13 @@ int	ft_atoi(const char *str)
 	return (y);
 }
 
-void	ft_lstcheck(t_list **stack_a, int check)
+void	ft_lstcheck(t_list *stack_a, int check)
 {
-	t_list	*tmp;
-
-	tmp = *stack_a;
-	printf("contenuto stack: %d\n", tmp->content);
-	printf("contenuto check: %d\n", check);
-	while (tmp->next != NULL)
+	while (stack_a->next != NULL)
 	{
-		if (tmp->content == check)
+		if (stack_a->content == check)
 			ft_display_exit();
-		tmp = tmp->next;
+		stack_a = stack_a->next;
 	}
 	return ;
 }
@@ -155,6 +150,21 @@ void	ft_lst_order(t_list **stack_a)
 	ft_display_exit();
 }
 
+void	ft_sa(t_list **stack_a)
+{
+	int		i;
+	t_list	*tmp;
+
+	tmp = *stack_a;
+	i = 0;
+	tmp = tmp->next;
+	i = tmp->content;
+	tmp->content = (*stack_a)->content;
+	(*stack_a)->content = i;
+	write(1, "sa\n", 3);
+	return ;
+}
+
 void	write_lst(t_list **stack_a, int argc, char **argv)
 {
 	t_list	*tmp;
@@ -166,7 +176,7 @@ void	write_lst(t_list **stack_a, int argc, char **argv)
 	{
 		tmp = ft_lstnew(ft_atoi(argv[i]));
 		ft_lstadd_back(stack_a, tmp);
-		//ft_lstcheck(stack_a, tmp->content);
+		ft_lstcheck(*stack_a, tmp->content);
 		i++;
 	}
 	ft_lst_order(stack_a);
@@ -177,7 +187,7 @@ void	lst_display(t_list *stack_a)
 	printf("\n");
 	while (stack_a != NULL)
 	{
-		printf("|%d| -> ", stack_a->content);
+		printf("|%d| -> ", stack_a->content);0
 		stack_a = stack_a->next;
 	}
 	printf("NULL\n");
@@ -193,6 +203,8 @@ int	main(int argc, char **argv)
 	if (argc < 3)
 		ft_display_exit();
 	write_lst(&stack_a, argc, argv);
+	lst_display(stack_a);
+	ft_sa(&stack_a);
 	lst_display(stack_a);
 	return (0);
 }
