@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
+#include <stdio.h>
 
 void	ft_lstcheck(t_list *stack_a, int check)
 {

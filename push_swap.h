@@ -6,7 +6,7 @@
 /*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/17 14:50:09 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 16:25:34 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ void	ft_rr(t_list **stack_a, t_list **stack_b);
 void	ft_rra(t_list **stack_a);
 void	ft_rrb(t_list **stack_b);
 void	ft_rrr(t_list **stack_a, t_list **stack_b);
-int		*quicksort(int *arr, int beg, int last);
+int		*quicksort(int *number,int first,int last)
 void	swap(int *a, int *b);
-int		*ft_copy_cont(t_list **stack_a, int size);
+int		*ft_copy_cont(t_list *stack_a, int size);
 int		ft_min_nbr(int a, int b);
 int		ft_the_needed(int min, int max, int size);
-int		ft_choose_best_nbr(t_list **stack_b, int size);
+int		ft_choose_best_nbr_b(t_list **stack_b, int size);
+int		ft_choose_best_nbr_a(t_list **stack_a, int size, int sep_one, int sep_two);
 
 
 void	lst_display(t_list *stack_a);

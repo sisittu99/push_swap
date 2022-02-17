@@ -72,13 +72,17 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 	n = 1;
 	while (size / n > 46)
 		n++;
-	dst = ft_copy_cont(stack_a, size);
+	dst = ft_copy_cont(*stack_a, size);
+	lst_display(*stack_a);
 	dst = quicksort(dst, 0, size);
+	printf("dst ordinato: \t %d %d %d", dst[0], dst[1], dst[2]);
 	while (i != n)
 	{
 		ft_move_to_b(stack_a, stack_b, dst[(size / n) * i], dst[(size / n) * (i + 1)]);
 		i++;
 	}
+	lst_display(*stack_a);
+	free (dst);
 }
 
 int	main(int argc, char **argv)
@@ -92,6 +96,7 @@ int	main(int argc, char **argv)
 	if (argc < 3)
 		ft_display_exit();
 	ft_write_lst(&stack_a, argc, argv);
+	lst_display(stack_a);
 	size = ft_lstsize(stack_a);
 	//creo una lista dove mi segno la posizione che il numero dovrebbe avere.
 	ft_lst_split(&stack_a, &stack_b, size);

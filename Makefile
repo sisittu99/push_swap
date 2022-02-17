@@ -3,38 +3,42 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/13 16:37:50 by fdrudi            #+#    #+#              #
-#    Updated: 2022/02/13 18:28:15 by fdrudi           ###   ########.fr        #
+#    Updated: 2022/02/17 16:03:06 by mcerchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME	=	push_swap
 
-SRC = push_swap.c utils.c operations_one.c operations_two.c operations_three.c\
+SRC		=	push_swap.c utils.c operations_one.c operations_two.c operations_three.c\
+			order.c quicksort.c\
 
-HDRS = ./libft/libft.h
+LIBFT	=	libft/libft.a
 
-OBJ = $(SRC:.c=.o)
+OBJ		=	$(SRC:.c=.o)
 
-RM = rm -f
+CC		=	gcc
 
-%.o: %.c
-	gcc -Wall -Wextra -Werror -I ${HDRS} -c $< -o $@
+CFLAGS	=	-Wall -Wextra -Werror
 
-$(NAME): $(OBJ)
-	make -C ./libft/
-	gcc $(OBJ) -o $(NAME)
+RM		=	rm -f
 
-all: $(NAME)
+$(NAME):	$(OBJ)
+			make -C ./libft
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
+
+all:		$(NAME)
 
 clean:
-	${RM} $(OBJ)
+			make clean -C libft
+			${RM} $(OBJ)
 
-fclean: clean
-	${RM} $(NAME) ${OBJ}
+fclean: 	clean
+			make fclean -C libft
+			${RM} $(NAME) ${OBJ}
 
-re: $(NAME)
+re:			fclean all
 
-.PHONY: all clean fclean re
+.PHONY:		all clean fclean re
