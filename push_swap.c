@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/13 18:28:10 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/17 12:36:32 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,21 @@ void	ft_write_lst(t_list **stack_a, int argc, char **argv)
 	ft_lst_order(stack_a);
 }
 
-void	ft_lstposition(t_list **stack_a, t_list **stack_b, const int size)
+void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 {
-	t_list	*pos_a;
-	t_list	*pos_b;
-	int		i;
+	int	*dst;
+	int	i;
 
-	i = -1;
-	pos_a = NULL;
-	while (++i < size)
-	{
-		pos_a = ft_lstnew(0);
+	i = 0;
+	dst = ft_copy_cont(stack_a, size);
 
-	}
 }
 
 int	main(int argc, char **argv)
 {
-	t_list			*stack_a;
-	t_list			*stack_b;
-	const int		size;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int		size;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -58,7 +53,7 @@ int	main(int argc, char **argv)
 	ft_write_lst(&stack_a, argc, argv);
 	size = ft_lstsize(stack_a);
 	//creo una lista dove mi segno la posizione che il numero dovrebbe avere.
-	ft_lstposition(&stack_a, &stack_b, size);
+	ft_lst_split(&stack_a, &stack_b, size);
 	lst_display(stack_a);
 	return (0);
 }
