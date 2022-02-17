@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
+/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:36:49 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/17 12:53:10 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 12:53:10 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int *quicksort(int *arr, int beg, int last)
 				swap(&arr[i], &arr[j]);
 		}
 		swap(&arr[pivot], &arr[j]);
-		quicksort(arr, beg, j - 1);
-		quicksort(arr, j + 1, last);
+		arr = quicksort(arr, beg, j - 1);
+		arr = quicksort(arr, j + 1, last);
 	}
 	return (arr);
 }

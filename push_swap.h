@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/13 18:28:14 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/17 14:50:09 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "./libft/libft.h"
 
 void	ft_write_lst(t_list **stack_a, int argc, char **argv);
+void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int start, int end);
+void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size);
 void	ft_lstcheck(t_list *stack_a, int check);
 void	ft_lst_order(t_list **stack_a);
 void	ft_sa(t_list **stack_a);
@@ -29,6 +31,13 @@ void	ft_rr(t_list **stack_a, t_list **stack_b);
 void	ft_rra(t_list **stack_a);
 void	ft_rrb(t_list **stack_b);
 void	ft_rrr(t_list **stack_a, t_list **stack_b);
+int		*quicksort(int *arr, int beg, int last);
+void	swap(int *a, int *b);
+int		*ft_copy_cont(t_list **stack_a, int size);
+int		ft_min_nbr(int a, int b);
+int		ft_the_needed(int min, int max, int size);
+int		ft_choose_best_nbr(t_list **stack_b, int size);
+
 
 void	lst_display(t_list *stack_a);
 
