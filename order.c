@@ -6,7 +6,7 @@
 /*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/17 12:35:46 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 12:49:30 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	*ft_copy_cont(t_list **stack_a, int size)
 	arr = (int *) malloc (sizeof(int) * size + 1);
 	if (!arr)
 		ft_display_exit();
-	while(stack_a != NULL)
+	while(*stack_a != NULL)
 	{
-		arr[i++] = stack_a->content;
-		stack_a = stack_a->next;
+		arr[i++] = (*stack_a)->content;
+		*stack_a = (*stack_a)->next;
 	}
 	return (arr);
 }
@@ -60,7 +60,7 @@ int ft_the_needed(int min, int max, int size)
 }
 
 
-int	ft_choose_best_nbr(t_list **stack_a, int mid)
+int	ft_choose_best_nbr(t_list **stack_a, int size)
 {
 	int	max;
 	int	pos_max;
@@ -68,22 +68,22 @@ int	ft_choose_best_nbr(t_list **stack_a, int mid)
 	int	pos_min;
 	int	pos;
 
-	max = stack_a->content;
-	min = stack_a->content;
+	max = (*stack_a)->content;
+	min = (*stack_a)->content;
 	pos_max = 0;
 	pos_min = 0;
 	pos = 0;
-	while (stack_a != NULL)
+	while (*stack_a != NULL)
 	{
-		stack_a = stack_a->next;
-		if (stack_a->content > max)
+		*stack_a = (*stack_a)->next;
+		if ((*stack_a)->content > max)
 		{
-			max = stack_a->content;
+			max = (*stack_a)->content;
 			pos_max = pos;
 		}
-		else if (stack_a->content < min)
+		else if ((*stack_a)->content < min)
 		{
-			min = stack_a->content;
+			min = (*stack_a)->content;
 			pos_min = pos;
 		}
 		pos++;
