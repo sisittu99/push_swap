@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 16:31:20 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/18 11:48:45 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/18 16:13:50 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_lstcheck(t_list *stack_a, int check)
 {
 	while (stack_a->next != NULL)
 	{
+		// printf("\ncheck : %d -- %d", stack_a->content, check);
 		if (stack_a->content == check)
 			ft_display_exit();
 		stack_a = stack_a->next;

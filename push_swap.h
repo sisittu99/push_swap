@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/18 13:19:52 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/18 15:06:02 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "./libft/libft.h"
 
-void	ft_write_lst(t_list **stack_a, int argc, char **argv);
+void	ft_write_lst(t_list **stack_a, int argc, char **argv, int i);
 void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int start, int end);
 void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size);
 void	ft_lstcheck(t_list *stack_a, int check);

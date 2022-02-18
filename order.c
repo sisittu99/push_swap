@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/18 11:00:41 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/18 16:13:23 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ int	*ft_copy_cont(t_list *stack_a, int size)
 		arr[i++] = (stack_a)->content;
 		stack_a = (stack_a)->next;
 	}
-	i = -1;
-	printf("\nArray Copy: ");
-	while (i++ < size)
-		printf("%d ", arr[i]);
-	//printf("*dst é pieno? controlliamo:\t%d %d %d", arr[0], arr[1], arr[2]);
+	// i = -1;
+	// printf("\nArray Copy: ");
+	// while (i++ < size)
+	// 	printf("%d ", arr[i]);
 	return (arr);
 }
 
@@ -75,8 +74,10 @@ int	ft_choose_best_nbr_a(t_list *stack_a, int size, int sep_one, int sep_two)
 	pos_first = -1;
 	pos_last = 0;
 	pos = 0;
-	printf("Choose nbr A List: ");
-	lst_display(stack_a);
+	// printf("Choose nbr A List: ");
+	// lst_display(stack_a);
+	// printf("\nsep one : %d   sep two : %d\n", sep_one, sep_two);
+	// printf("\nstack a cont : %d\n", stack_a->content);
 	while (stack_a != NULL)
 	{
 		if (stack_a->content >= sep_one && stack_a->content < sep_two)
@@ -90,6 +91,7 @@ int	ft_choose_best_nbr_a(t_list *stack_a, int size, int sep_one, int sep_two)
 	}
 	if (pos_first == -1)
 		return (size + 1);
+//	printf("\npos first : %d    pos last : %d     size : %d\n", pos_first, pos_last, size);
 	return (ft_the_needed(pos_first, pos_last, size));
 }
 
@@ -106,8 +108,8 @@ int	ft_choose_best_nbr_b(t_list *stack_b, int size)
 	pos_max = 0;
 	pos_min = 0;
 	pos = 1;
-	printf("\nChoose nbr B List: ");
-	lst_display(stack_b);
+	// printf("\nChoose nbr B List: ");
+	// lst_display(stack_b);
 	while (stack_b->next != NULL)
 	{
 		stack_b = stack_b->next;
