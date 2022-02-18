@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/18 11:06:12 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/18 13:50:50 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_write_lst(t_list **stack_a, int argc, char **argv)
 
 	i = 1;
 	tmp = NULL;
+// printf("test su ft_write_lst\n\nstampa di argc:\t\t%d", argc);fflush(stdout);
+// printf("\nstampa di ")
 	while (i < argc)
 	{
 		tmp = ft_lstnew(ft_atoi(argv[i]));
@@ -92,13 +94,11 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 	printf("\nSplit lista:\n");
 	lst_display(*stack_a);
 	dst = quicksort(dst, 0, size);
-	//printf("dst ordinato: \t %d %d %d", dst[0], dst[1], dst[2]);
 	while (i != n)
 	{
 		ft_move_to_b(stack_a, stack_b, dst[(size / n) * i], dst[(size / n) * (i + 1)]);
 		i++;
 	}
-	//lst_display(*stack_a);
 	free (dst);
 }
 
@@ -107,17 +107,25 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	int		size;
+	char	**arg;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc < 3)
+	size = 0;
+	if (argc < 2)
 		ft_display_exit();
-	ft_write_lst(&stack_a, argc, argv);
-	//lst_display(stack_a);
+	if (argc == 2)
+	{
+		arg = ft_split(argv[1], ' ');
+		while (arg[size] != NULL)
+			size++;
+		ft_write_lst(&stack_a, size, arg);
+	}
+	else
+		ft_write_lst(&stack_a, argc, argv);
 	size = ft_lstsize(stack_a) - 1;
-	//creo una lista dove mi segno la posizione che il numero dovrebbe avere.
 	ft_lst_split(&stack_a, &stack_b, size);
-	printf("\nReturn List:\n");
+	printf("\nReturn List:");
 	lst_display(stack_a);
 	return (0);
 }
