@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 12:24:53 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/20 16:01:37 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/20 17:56:35 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	*ft_long_lis(int *dst, int *arr, int size)
 		}
 		i++;
 	}
-	val = (int *) malloc (sizeof(int) * max);
+	val = (int *) malloc (sizeof(int) * max + 1);
 	if (!val)
 		ft_display_exit();
 	i = max - 1;
@@ -45,6 +45,12 @@ int	*ft_long_lis(int *dst, int *arr, int size)
 			i--;
 		}
 		j--;
+	}
+	i = 0;
+	while (i < 5)
+	{
+		printf("\n%d", val[i]);
+		i++;
 	}
 	return (val);
 }

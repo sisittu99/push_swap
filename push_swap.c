@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/20 15:55:50 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/20 17:57:37 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,37 @@ void	ft_write_lst(t_list **stack_a, int argc, char **argv, int i)
 	ft_lst_order(stack_a);
 }
 
-void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int start, int end)
+void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 {
 	int	i;
 	int	size;
 	int	count;
 
 	size = ft_lstsize(*stack_a);
-	// printf("\nMove To B List:\n");
-	// lst_display(*stack_a);
-	// printf("\nStart: %d\t End: %d\n", start, end);
-	i = ft_choose_best_nbr_a(*stack_a, size, start, end);
+	lst_display(*stack_a);
+	exit(0);
+	i = ft_choose_best_nbr_a(*stack_a, size, arr, max);
+	lst_display(*stack_a);
 	while (i != size + 1)
 	{
-	//	printf("\nIndicatore Mosse A: %d\n", i);
 		if (i < 0)
 			while (i++ <= 0)
 				ft_rra(stack_a);
 		else if (i > 0 && i < size)
-
 			while (i-- > 0)
 				ft_ra(stack_a);
 		ft_pb(stack_a, stack_b);
-		i = ft_choose_best_nbr_a(*stack_a, size, start, end);
+		i = ft_choose_best_nbr_a(*stack_a, size, arr, max);
 	}
-	// printf("\nIndicatore Mosse A: %d\n", i);
-	// printf("\nSize: %d\n", size);
-	// printf("\nPost Move To B List:\n");
-	// lst_display(*stack_a);
-	// printf("\nB ListPost Move To B List:\n");
-	// lst_display(*stack_b);
+	printf("\nstack A : ");
+	lst_display(*stack_a);
+	printf("\nstack B : ");
+	lst_display(*stack_b);
+	exit (0);
 	while (*stack_b != NULL)
 	{
 		count = 0;
 		i = ft_choose_best_nbr_b(*stack_b, ft_lstsize(*stack_b));
-		//printf("\nIndicatore Mosse B: %d\n", i);
 		if (i < 0)
 			while (i++ < 0)
 				ft_rrb(stack_b);
@@ -79,14 +75,13 @@ void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int start, int end)
 		while (count-- > 0)
 			ft_rra(stack_a);
 	}
-
 }
 
 void	ft_sort_three(t_list **stack_a)
 {
-	int	i;
-	int	j;
-	int	x;
+	int		i;
+	int		j;
+	int		x;
 	t_list	*tmp;
 
 	tmp = NULL;
@@ -111,64 +106,22 @@ void	ft_sort_three(t_list **stack_a)
 	}
 }
 
-
 void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 {
 	int	*dst;
 	int	*arr;
 	int	i;
-	int	n;
 
-	n = 0;
-	//printf("\nsplit size : %d\n", size);
+	i = 0;
 	if (size == 3)
 	{
 		ft_sort_three(stack_a);
 		return ;
 	}
 	dst = ft_copy_cont(*stack_a, size);
-	arr = (int *) malloc (sizeof(int) * (size + 1));
-	if (!arr)
-		ft_display_exit();
-	//arr = longestSubSeq(dst, size);
-	i = 1;
-	arr[0] = 1;
-	while (i < size)
-	{
-		arr[i] = 1;
-		while (n < i)
-		{
-			if (dst[i] > dst[n] && arr[i] < arr[n] + 1)
-				arr[i] = arr[n] + 1;
-			n++;
-		}
-		n = 0;
-		i++;
-	}
-	arr = ft_long_lis(dst, arr, size);
-	n = 0;
-	while (n < 5)
-	{
-		printf("%d ", arr[n]);
-		n++;
-	}
-	exit (0);
-
-	// //printf("\nDest Copy: ");
-	// i = -1;
-	// while (i++ < size)
-	// 	printf("%d ", dst[i]);
-	// i = 0;
-	// printf("\nSplit lista:\n");
-	// lst_display(*stack_a);
-	// dst = quicksort(dst, 0, size);
-	// size = (size / n);
-	// i = 0;
-	// while (i < n)
-	// {
-		ft_move_to_b(stack_a, stack_b, dst[size * i], dst[size * (i + 1)]);
-	// 	i++;
-	// }
+	arr = ft_define_lis(dst, size);
+	i = 5;
+	ft_move_to_b(stack_a, stack_b, arr, i);
 	free (dst);
 }
 
