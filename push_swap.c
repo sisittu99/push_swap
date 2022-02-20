@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/18 16:26:32 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/20 13:02:05 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,19 +115,42 @@ void	ft_sort_three(t_list **stack_a)
 void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 {
 	int	*dst;
+	int	*arr;
 	int	i;
 	int	n;
 
-	n = 1;
+	n = 0;
 	//printf("\nsplit size : %d\n", size);
 	if (size == 3)
 	{
 		ft_sort_three(stack_a);
 		return ;
 	}
-	while (size / n > 21)
-		n++;
+	// while (size / n > 26)
+	// 	n++;
 	dst = ft_copy_cont(*stack_a, size);
+
+	arr = longestSubSeq(dst, size);
+	/*while (i <= size)
+	{
+		arr[i] = 1;
+		while (n < i)
+		{
+			if (dst[i] > dst[n] && arr[i] < arr[n] + 1)
+				arr[i] = arr[n] + 1;
+			n++;
+		}
+		n = 0;
+		i++;
+	}*/
+	n = 0;
+	while (n < 9)
+	{
+		printf("%d ", arr[n]);
+		n++;
+	}
+	exit (0);
+
 	// //printf("\nDest Copy: ");
 	// i = -1;
 	// while (i++ < size)
@@ -135,14 +158,14 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 	// i = 0;
 	// printf("\nSplit lista:\n");
 	// lst_display(*stack_a);
-	dst = quicksort(dst, 0, size);
-	size = (size / n);
-	i = 0;
-	while (i < n)
-	{
+	// dst = quicksort(dst, 0, size);
+	// size = (size / n);
+	// i = 0;
+	// while (i < n)
+	// {
 		ft_move_to_b(stack_a, stack_b, dst[size * i], dst[size * (i + 1)]);
-		i++;
-	}
+	// 	i++;
+	// }
 	free (dst);
 }
 
