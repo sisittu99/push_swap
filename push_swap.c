@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/20 13:02:05 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/20 15:55:50 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,14 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 		ft_sort_three(stack_a);
 		return ;
 	}
-	// while (size / n > 26)
-	// 	n++;
 	dst = ft_copy_cont(*stack_a, size);
-
-	arr = longestSubSeq(dst, size);
-	/*while (i <= size)
+	arr = (int *) malloc (sizeof(int) * (size + 1));
+	if (!arr)
+		ft_display_exit();
+	//arr = longestSubSeq(dst, size);
+	i = 1;
+	arr[0] = 1;
+	while (i < size)
 	{
 		arr[i] = 1;
 		while (n < i)
@@ -142,9 +144,10 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 		}
 		n = 0;
 		i++;
-	}*/
+	}
+	arr = ft_long_lis(dst, arr, size);
 	n = 0;
-	while (n < 9)
+	while (n < 5)
 	{
 		printf("%d ", arr[n]);
 		n++;

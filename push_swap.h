@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/20 12:53:24 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/20 16:01:11 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int		ft_the_needed(int min, int max, int size);
 int		ft_choose_best_nbr_b(t_list *stack_b, int size);
 int		ft_choose_best_nbr_a(t_list *stack_a, int size, int sep_one, int sep_two);
 void	ft_check_argv(int argc, char *argv, t_list **stack_a);
+int		*ft_define_lis(int *dst, int size);
+int		*ft_long_lis(int *dst, int *arr, int size);
 
-int *longestSubSeq(int *subArr, int n);
 void	lst_display(t_list *stack_a);
 
 #endif
