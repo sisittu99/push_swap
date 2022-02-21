@@ -15,7 +15,6 @@
 
 int	*ft_copy_cont(t_list *stack_a, int size)
 {
-	//printf("controllo in copy_cont:\t"); lst_display(stack_a);
 	int	*arr;
 	int	i;
 
@@ -28,10 +27,6 @@ int	*ft_copy_cont(t_list *stack_a, int size)
 		arr[i++] = (stack_a)->content;
 		stack_a = (stack_a)->next;
 	}
-	// i = -1;
-	// printf("\nArray Copy: ");
-	// while (i++ < size)
-	// 	printf("%d ", arr[i]);
 	return (arr);
 }
 
@@ -83,7 +78,6 @@ int	ft_choose_best_nbr_a(t_list *stack_a, int size, int *arr, int max)
 	pos_last = 0;
 	pos = 0;
 	i = 0;
-	printf("\n size : %d\n", size);
 	while (stack_a != NULL)
 	{
 		i = 0;
@@ -100,39 +94,135 @@ int	ft_choose_best_nbr_a(t_list *stack_a, int size, int *arr, int max)
 		stack_a = stack_a->next;
 		pos++;
 	}
-	printf("\n pos_first : %d\tpos_last : %d\n", pos_first, pos_last);
 	if (pos_first == -1)
 		return (size + 1);
 	return (ft_the_needed(pos_first, pos_last, size));
 }
 
-int	ft_the_needed_a(*stack_a, int cont, int size)
+int	ft_max_or_min(t_list *stack_a, int cont, int size)
+{
+	int	pos;
+	int	min;
+	int	max;
+	int	pos_max;
+	int	pos_min;
+
+	max = stack_a->content;
+	min = stack_a->content;
+	pos_max = 0;
+	pos_min = 0;
+	pos = 1;
+	while (stack_a != NULL)
+	{
+		if (stack_a->content > max)
+		{
+			max = stack_a->content;
+			pos_max = pos;
+		}
+		if (stack_a->content < min)
+		{
+			min = stack_a->content;
+			pos_min = pos;
+		}
+		stack_a = stack_a->next;
+		pos++;
+	}
+	if (cont > max)
+		return (pos_max);
+	if (cont < min)
+		return (pos_min);
+	return (size + 1);
+}
+
+int	ft_the_needed_a(t_list *stack_a, int cont, int size)
 {
 	t_list	*tmp;
-	int	i;
+	int		i;
 
 	tmp = stack_a;
+	i = ft_max_or_min(stack_a, cont, size);
+	if (i != size + 1)
+		return(ft_the_needed_b(i, size));
 	while (tmp->next != NULL)
 		tmp = tmp->next;
-	i = 0;
 	if (cont < stack_a->content && cont > tmp->content)
 		return (0);
+	i = 1;
 	while (!(cont > stack_a->content && cont < (stack_a->next)->content))
 	{
 		stack_a = stack_a->next;
 		i++;
 	}
-	i++;
 	return (ft_the_needed_b(i, size));
 }
 
-int	ft_choose_best_nbr_b(t_list *stack_b, int size_b, t_list *stack_a, int size_a)
+int	ft_max_nbr(int a, int b)
+{
+	if (a > b)
+		return (a);
+	if (b > a)
+		return (b);
+	else
+		return (a);
+}
+
+int	ft_best_comb(int *arr_a, int *arr_b, int size)
+{
+	int	*tmp;
+	int	i;
+	int	pos;
+
+	i = 0;
+	pos = 0;
+	tmp = (int *) malloc (sizeof(int) * size);
+	if (!tmp)
+		ft_display_exit();
+	while (i < size)
+	{
+		if (arr_a[i] < 0)
+			arr_a[i] *= -1;
+		if (arr_b[i] < 0)
+			arr_b[i] *= -1;
+		if (arr_a[i] > 0 && arr_b[i] > 0)
+			tmp[i] = ft_max_nbr(arr_a[i], arr_b[i]);
+		else
+			tmp[i] = arr_a[i] + arr_b[i];
+		i++;
+	}
+	i = 1;
+	while (i < size)
+	{
+		if (tmp[i] < tmp[pos])
+			pos = i;
+		i++;
+	}
+	return (pos);
+}
+
+int	ft_move_a(int a, int b, t_list **stack_a, t_list **stack_b)
+{
+	if (a < 0 && b < 0)
+		while (a++ < 0 && b++ < 0)
+			ft_rrr(stack_a, stack_b);
+	if (a > 0 && b > 0)
+		while (a-- > 0 && b-- > 0)
+			ft_rr(stack_a, stack_b);
+	if (a < 0)
+			while (a++ < 0)
+				ft_rra(stack_a);
+	else if (a > 0)
+			while (a-- > 0)
+				ft_ra(stack_a);
+	return (b);
+}
+
+int	ft_choose_best_nbr_b(t_list **stack_b, int size_b, t_list **stack_a, int size_a)
 {
 	//definiamo array  di appoggio
-	int	*arr_b;
-	int	*arr_a;
-	int	i;
-	int	j;
+	int		*arr_b;
+	int		*arr_a;
+	t_list	*tmp_b;
+	int		i;
 	//chiama 2 funzioni (ok)
 	//1 per the needed di B (ok)
 	//1 per the needed di A rispetto val B (ok)
@@ -143,29 +233,34 @@ int	ft_choose_best_nbr_b(t_list *stack_b, int size_b, t_list *stack_a, int size_
 	//riduciamo il numero togliendo le mosse effettuate
 
 	i = 0;
-	arr_a = (int *) malloc (sizeof(int) * size_a);
+	tmp_b = *stack_b;
+	arr_a = (int *) malloc (sizeof(int) * size_b);
 	arr_b = (int *) malloc (sizeof(int) * size_b);
 	if (!arr_b || !arr_a)
 		ft_display_exit();
+	printf("\nARR B : ");
 	while (i < size_b)
 	{
 		arr_b[i] = ft_the_needed_b(i, size_b);
+		printf(" %d ", arr_b[i]);
 		i++;
 	}
 	i = 0;
-	while (i < size_b)
+	printf("\nARR A : ");
+	while (i < size_b && tmp_b != NULL)
 	{
-		arr_a[i] = ft_the_needed_a(stack_a, stack_b->content, size_a);
-		stack_b = stack_b->next;
+		arr_a[i] = ft_the_needed_a(*stack_a, tmp_b->content, size_a);
+		 printf(" %d ", arr_a[i]);
+		tmp_b = tmp_b->next;
 		i++;
 	}
-	//calcolare in un array il numero (positivo!) di mosse che iasogna fare:
+
+	//calcolare in un array il numero (positivo!) di mosse che bisogna fare:
 	//se i due numeri sono entrambi positivi o negativi, va preso il maggiore dei due
-	// altrimenti il numero di mosse sarà banalmente la somma (sempre in pos).
+	//altrimenti il numero di mosse sarà banalmente la somma (sempre in pos).
 
 	//le mosse verrano applicate in una funzione esterna richiamata qui.
 	//il numero da ritornare sarà la posizione del numero scelto.
-	i = ft_cazzimiei
-	j = ft_mosse_di_a
-	return (j);
+	i = ft_best_comb(arr_a, arr_b, size_b);
+	return (ft_move_a(arr_a[i], arr_b[i], stack_a, stack_b));
 }
