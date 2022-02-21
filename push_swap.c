@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/20 17:57:37 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/21 11:15:1 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,20 @@ void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 
 	size = ft_lstsize(*stack_a);
 	lst_display(*stack_a);
-	exit(0);
 	i = ft_choose_best_nbr_a(*stack_a, size, arr, max);
 	lst_display(*stack_a);
 	while (i != size + 1)
 	{
+		lst_display(*stack_a);
+		printf("\nI : %d\n", i);
 		if (i < 0)
-			while (i++ <= 0)
+			while (i++ < 0)
 				ft_rra(stack_a);
 		else if (i > 0 && i < size)
 			while (i-- > 0)
 				ft_ra(stack_a);
 		ft_pb(stack_a, stack_b);
-		i = ft_choose_best_nbr_a(*stack_a, size, arr, max);
+		i = ft_choose_best_nbr_a(*stack_a, --size, arr, max);
 	}
 	printf("\nstack A : ");
 	lst_display(*stack_a);
@@ -58,8 +59,7 @@ void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 	exit (0);
 	while (*stack_b != NULL)
 	{
-		count = 0;
-		i = ft_choose_best_nbr_b(*stack_b, ft_lstsize(*stack_b));
+		i = ft_choose_best_nbr_b(*stack_b, ft_lstsize(*stack_b), *stack_a, size); //check size giusta
 		if (i < 0)
 			while (i++ < 0)
 				ft_rrb(stack_b);
@@ -67,13 +67,8 @@ void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 			while (i-- > 0)
 				ft_rb(stack_b);
 		while ((*stack_a)->content < (*stack_b)->content)
-		{
 			ft_ra(stack_a);
-			count++;
-		}
 		ft_pa(stack_b, stack_a);
-		while (count-- > 0)
-			ft_rra(stack_a);
 	}
 }
 
@@ -119,8 +114,8 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 		return ;
 	}
 	dst = ft_copy_cont(*stack_a, size);
-	arr = ft_define_lis(dst, size);
-	i = 5;
+	arr = ft_define_lis(dst, size, &i);
+	printf("\nmax : %d", i);
 	ft_move_to_b(stack_a, stack_b, arr, i);
 	free (dst);
 }

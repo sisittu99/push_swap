@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/20 17:41:58 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/21 11:110:14 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ int		*quicksort(int *number, int first, int last);
 void	swap(int *a, int *b);
 int		*ft_copy_cont(t_list *stack_a, int size);
 int		ft_min_nbr(int a, int b);
-int		ft_the_needed(int max, int size);
-int		ft_choose_best_nbr_b(t_list *stack_b, int size);
+int		ft_the_needed(int min, int max, int size);
+int		ft_choose_best_nbr_b(t_list *stack_b, int size, t_list *stack_a, int size_a);
 int		ft_choose_best_nbr_a(t_list *stack_a, int size, int *arr, int max);
 void	ft_check_argv(int argc, char *argv, t_list **stack_a);
-int		*ft_define_lis(int *dst, int size);
-int		*ft_long_lis(int *dst, int *arr, int size);
+int		*ft_define_lis(int *dst, int size, int *max);
+int		*ft_long_lis(int *dst, int *arr, int size, int *ret);
+int	ft_the_needed_b(int max, int size);
 
 void	lst_display(t_list *stack_a);
 
