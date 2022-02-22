@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 16:31:20 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/21 18:01:40 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 12:22:28 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ void	ft_lst_order(t_list **stack_a)
 	ft_display_exit();
 }
 
+void	ft_write_lst(t_list **stack_a, int argc, char **argv, int i)
+{
+	t_list	*tmp;
+
+	tmp = NULL;
+	while (i < argc)
+	{
+		tmp = ft_lstnew(ft_atoi(argv[i]));
+		ft_lstadd_back(stack_a, tmp);
+		ft_lstcheck(*stack_a, tmp->content);
+		i++;
+	}
+	ft_lst_order(stack_a);
+}
 
 void	lst_display(t_list *stack_a)
 {

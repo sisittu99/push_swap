@@ -6,16 +6,40 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 12:24:53 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/21 11:11:220 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 13:13:10 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include <stdio.h>
 
+int	*ft_lis_util(int *dst, int *arr, int max, int j)
+{
+	int	i;
+	int	*val;
+
+	i = 0;
+	val = (int *) malloc (sizeof(int) * max + 1);
+	if (!val)
+		ft_display_exit();
+	i = max - 1;
+	val[i--] = dst[j--];
+	max--;
+	while (j >= 0 && i >= 0)
+	{
+		if (arr[j] == max && dst[j] < val[max])
+		{
+			val[i] = dst[j];
+			max--;
+			i--;
+		}
+		j--;
+	}
+	return (val);
+}
+
 int	*ft_long_lis(int *dst, int *arr, int size, int *ret)
 {
-	int	*val;
 	int	i;
 	int	max;
 	int	j;
@@ -32,31 +56,8 @@ int	*ft_long_lis(int *dst, int *arr, int size, int *ret)
 		}
 		i++;
 	}
-	val = (int *) malloc (sizeof(int) * max + 1);
-	if (!val)
-		ft_display_exit();
 	*ret = max;
-	i = max - 1;
-	val[i--] = dst[j--];
-	max--;
-	while (j >= 0 && i >= 0)
-	{
-		if (arr[j] == max && dst[j] < val[max])
-		{
-			val[i] = dst[j];
-			max--;
-			i--;
-		}
-		j--;
-	}
-	i = 0;
-	printf("\nLIS : ");
-	while (i < 5)
-	{
-		printf(" %d ", val[i]);
-		i++;
-	}
-	return (val);
+	return (ft_lis_util(dst, arr, max, j));
 }
 
 int	*ft_define_lis(int *dst, int size, int *max)

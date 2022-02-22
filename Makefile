@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+         #
+#    By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/13 16:37:50 by fdrudi            #+#    #+#              #
-#    Updated: 2022/02/20 12:52:29 by mcerchi          ###   ########.fr        #
+#    Updated: 2022/02/22 13:31:50 by fdrudi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap
 
 SRC		=	push_swap.c utils.c operations_one.c operations_two.c operations_three.c\
-			order.c quicksort.c\
-			lis.c\
+			order.c order_two.c order_three.c\
+			lis.c sort.c\
 
 LIBFT	=	libft/libft.a
 
