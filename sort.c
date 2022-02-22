@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:23:41 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 16:37:59 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 17:57:08 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,24 @@ void	ft_move_to_a(t_list **stack_a, t_list **stack_b)
 	}
 }
 
+void	ft_check_b(t_list **stack_b, int cont)
+{
+	int	i;
+	int	size;
+
+	size = ft_lstsize(*stack_b);
+	i = 0;
+	if (*stack_b == NULL)
+		return ;
+	i = ft_the_needed_a(*stack_b, cont, size);
+	if (i < 0)
+		while (i++ < 0)
+			ft_rb(stack_b);
+	else if (i > 0 && i != size + 1)
+		while (i-- > 0)
+			ft_rrb(stack_b);
+}
+
 void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 {
 	int	i;
@@ -94,6 +112,7 @@ void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 		else if (i > 0 && i < size_a)
 			while (i-- > 0)
 				ft_ra(stack_a);
+		ft_check_b(stack_b, (*stack_a)->content);
 		ft_pb(stack_a, stack_b);
 		i = ft_best_nbr_a(*stack_a, --size_a, arr, max);
 	}
