@@ -32,24 +32,30 @@ void	ft_write_lst(t_list **stack_a, int argc, char **argv, int i)
 void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 {
 	int	i;
-	int	size;
+	int	size_a;
+	int	size_b;
 
-	size = ft_lstsize(*stack_a);
-	i = ft_choose_best_nbr_a(*stack_a, size, arr, max);
-	while (i != size + 1)
+	size_a = ft_lstsize(*stack_a);
+	i = ft_choose_best_nbr_a(*stack_a, size_a, arr, max);
+	while (i != size_a + 1)
 	{
 		if (i < 0)
 			while (i++ < 0)
 				ft_rra(stack_a);
-		else if (i > 0 && i < size)
+		else if (i > 0 && i < size_a)
 			while (i-- > 0)
 				ft_ra(stack_a);
 		ft_pb(stack_a, stack_b);
-		i = ft_choose_best_nbr_a(*stack_a, --size, arr, max);
+		i = ft_choose_best_nbr_a(*stack_a, --size_a, arr, max);
 	}
-	while (*stack_b != NULL)           //SISTEMARE QUI !!!!!
+	size_b = ft_lstsize(*stack_b);
+	while (*stack_b != NULL)
 	{
-		i = ft_choose_best_nbr_b(stack_b, ft_lstsize(*stack_b), stack_a, size);
+		printf("\nstack A : ");
+		lst_display(*stack_a);
+		printf("\nstack B : ");
+		lst_display(*stack_b);
+		i = ft_choose_best_nbr_b(stack_b, size_b, stack_a, size_a);
 		if (i < 0)
 			while (i++ < 0)
 				ft_rrb(stack_b);
@@ -57,13 +63,19 @@ void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 			while (i-- > 0)
 				ft_rb(stack_b);
 		ft_pa(stack_b, stack_a);
-		exit(0);
+		size_a++;
+		size_b--;
 	}
-	exit(0);
 	printf("\nstack A : ");
 	lst_display(*stack_a);
 	printf("\nstack B : ");
 	lst_display(*stack_b);
+	ft_search_min(stack_a, ft_lstsize(*stack_a));
+	printf("\nstack A : ");
+	lst_display(*stack_a);
+	printf("\nstack B : ");
+	lst_display(*stack_b);
+	exit(0);
 }
 
 void	ft_sort_three(t_list **stack_a)

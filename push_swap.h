@@ -47,7 +47,8 @@ int		ft_max_nbr(int a, int b);
 int		ft_best_comb(int *arr_a, int *arr_b, int size);
 int		ft_move_a(int a, int b, t_list **stack_a, t_list **stack_b);
 int		ft_max_or_min(t_list *stack_a, int cont, int size);
-
+int		*ft_intcpy(int	*arr, int size);
+void	ft_search_min(t_list **stack_a, int size);
 
 void	lst_display(t_list *stack_a);
 
