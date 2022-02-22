@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:54:06 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 13:32:42 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 13:44:08 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	return_max_or_min(int cont, int *max_n_min, int size)
 
 int	ft_max_or_min(t_list *stack_a, int cont, int size)
 {
-	int max_n_min[5];
+	int	max_n_min[5];
 
 	max_n_min[0] = stack_a->content;
 	max_n_min[1] = stack_a->content;

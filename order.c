@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/22 13:29:04 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 13:50:07 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ int	ft_best_nbr_a(t_list *stack_a, int size, int *arr, int max)
 	while (stack_a != NULL)
 	{
 		pos[3] = 0;
-		while (stack_a->content != arr[pos[3]] && pos[3] < max - 1)
-			pos[3]++;
-		if (pos[3] == max - 1)
+		while (stack_a->content != arr[pos[3]] && pos[3] <= max - 1)
 		{
-			pos[1] = pos[2];
-			if (pos[0] == -1)
-				pos[0] = pos[2];
+			if (pos[3] == max - 1)
+			{
+				pos[1] = pos[2];
+				if (pos[0] == -1)
+					pos[0] = pos[2];
+			}
+			pos[3]++;
 		}
 		stack_a = stack_a->next;
 		pos[2]++;
