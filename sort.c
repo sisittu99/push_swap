@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:23:41 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 17:57:08 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 18:12:36 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_check_b(t_list **stack_b, int cont)
 
 	size = ft_lstsize(*stack_b);
 	i = 0;
-	if (*stack_b == NULL)
+	if (*stack_b == NULL || size == 1)
 		return ;
 	i = ft_the_needed_a(*stack_b, cont, size);
 	if (i < 0)
@@ -95,6 +95,7 @@ void	ft_check_b(t_list **stack_b, int cont)
 	else if (i > 0 && i != size + 1)
 		while (i-- > 0)
 			ft_rrb(stack_b);
+	return ;
 }
 
 void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
