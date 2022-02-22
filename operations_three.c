@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 13:18:50 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/13 16:36:24 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 15:23:14 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_rrb(t_list **stack_b)
 	last->next = *stack_b;
 	*stack_b = last;
 	tmp->next = NULL;
-	write(1, "rra\n", 4);
+	write(1, "rrb\n", 4);
 }
 
 void	ft_rrr(t_list **stack_a, t_list **stack_b)

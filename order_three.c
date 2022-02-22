@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:54:06 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 13:44:08 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 16:28:54 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_max_or_min(t_list *stack_a, int cont, int size)
 	max_n_min[4] = 1;
 	while (stack_a != NULL)
 	{
-		if (stack_a->content > max_n_min[0])
+		if (stack_a->content >= max_n_min[0])
 		{
 			max_n_min[0] = stack_a->content;
 			max_n_min[2] = max_n_min[4];
@@ -50,7 +50,7 @@ int	ft_max_or_min(t_list *stack_a, int cont, int size)
 		if (stack_a->content < max_n_min[1])
 		{
 			max_n_min[1] = stack_a->content;
-			max_n_min[3] = max_n_min[4];
+			max_n_min[3] = max_n_min[4] - 1;
 		}
 		stack_a = stack_a->next;
 		max_n_min[4]++;

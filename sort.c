@@ -6,10 +6,11 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:23:41 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 14:44:58 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 16:37:59 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "./libft/libft.h"
 #include "push_swap.h"
 

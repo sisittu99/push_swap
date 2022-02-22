@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/22 14:35:19 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 16:38:42 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,23 @@ int	ft_best_comb(int *arr_a, int *arr_b, int size)
 int	ft_move_a(int a, int b, t_list **stack_a, t_list **stack_b)
 {
 	if (a < 0 && b < 0)
-		while (a++ < 0 && b++ < 0)
+	{
+		while (a < 0 && b < 0)
+		{
 			ft_rrr(stack_a, stack_b);
+			a++;
+			b++;
+		}
+	}
 	if (a > 0 && b > 0)
-		while (a-- > 0 && b-- > 0)
+	{
+		while (a > 0 && b > 0)
+		{
 			ft_rr(stack_a, stack_b);
+			a--;
+			b--;
+		}
+	}
 	if (a < 0)
 		while (a++ < 0)
 			ft_rra(stack_a);

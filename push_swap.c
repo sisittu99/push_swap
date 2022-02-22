@@ -35,7 +35,7 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 	arr = ft_define_lis(dst, size, &i);
 	ft_move_to_b(stack_a, stack_b, arr, i);
 	ft_move_to_a(stack_a, stack_b);
-	ft_search_min(stack_a, ft_lstsize(*stack_a));
+	ft_search_min(stack_a, size);
 	free (dst);
 }
 
