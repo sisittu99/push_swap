@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/22 13:50:07 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 14:35:19 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	ft_best_comb(int *arr_a, int *arr_b, int size)
 	int	i;
 	int	pos;
 
-	i = 0;
+	i = -1;
 	pos = 0;
 	tmp = (int *) malloc (sizeof(int) * size);
 	if (!tmp || !arr_a || !arr_b)
 		ft_display_exit();
-	while (i < size)
+	while (++i < size)
 	{
 		if (arr_a[i] < 0)
 			arr_a[i] *= -1;
@@ -71,15 +71,11 @@ int	ft_best_comb(int *arr_a, int *arr_b, int size)
 			tmp[i] = ft_max_nbr(arr_a[i], arr_b[i]);
 		else
 			tmp[i] = arr_a[i] + arr_b[i];
-		i++;
 	}
-	i = 1;
-	while (i < size)
-	{
+	i = 0;
+	while (++i < size)
 		if (tmp[i] < tmp[pos])
 			pos = i;
-		i++;
-	}
 	return (pos);
 }
 

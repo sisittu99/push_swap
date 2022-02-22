@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:23:41 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 13:30:03 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/22 14:44:58 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@ void	ft_sort_three(t_list **stack_a)
 		if (i < j && j > x && x < i)
 			ft_rra(stack_a);
 	}
+}
+
+void	ft_sort_five(t_list **stack_a, t_list **stack_b)
+{
+	int	i;
+
+	i = 2;
+	while (i-- > 0)
+		ft_pb(stack_a, stack_b);
+	ft_sort_three(stack_a);
+	ft_move_to_a(stack_a, stack_b);
+	ft_search_min(stack_a, ft_lstsize(*stack_a));
 }
 
 void	ft_move_to_a(t_list **stack_a, t_list **stack_b)

@@ -26,6 +26,11 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 		ft_sort_three(stack_a);
 		return ;
 	}
+	if (size == 5)
+	{
+		ft_sort_five(stack_a, stack_b);
+		return ;
+	}
 	dst = ft_copy_cont(*stack_a, size);
 	arr = ft_define_lis(dst, size, &i);
 	ft_move_to_b(stack_a, stack_b, arr, i);
