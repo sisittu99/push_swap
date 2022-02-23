@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:23:41 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 18:58:50 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/23 17:37:50 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,43 +79,6 @@ void	ft_move_to_a(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-void	ft_check_b(t_list **stack_b, int cont)
-{
-	int		i;
-	int		size;
-	t_list	*tmp;
-
-	size = ft_lstsize(*stack_b);
-	tmp = *stack_b;
-	i = 0;
-	if (*stack_b == NULL)
-		return ;
-	i = ft_max_or_min(*stack_b, cont, size);
-	if (i != size + 1)
-		i = ft_the_needed_b(i, size);
-	else
-	{
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		if (cont > (*stack_b)->content && cont < tmp->content)
-			return ;
-		i = 1;
-		tmp = *stack_b;
-		while (!(cont < tmp->content && cont > (tmp->next)->content))
-		{
-			tmp = tmp->next;
-			i++;
-		}
-	}
-	if (i < 0)
-		while (i++ < 0)
-			ft_rb(stack_b);
-	else if (i > 0 && i != size + 1)
-		while (i-- > 0)
-			ft_rrb(stack_b);
-	return ;
-}
-
 void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 {
 	int	i;
@@ -131,9 +94,7 @@ void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 		else if (i > 0 && i < size_a)
 			while (i-- > 0)
 				ft_ra(stack_a);
-	//	ft_check_b(stack_b, (*stack_a)->content);
 		ft_pb(stack_a, stack_b);
 		i = ft_best_nbr_a(*stack_a, --size_a, arr, max);
 	}
-	//lst_display(*stack_b);
 }
