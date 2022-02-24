@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/24 15:42:59 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/24 16:36:36 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ int	ft_best_comb(int *arr_a, int *arr_b, int size)
 	tmp = (int *) malloc (sizeof(int) * size);
 	if (!tmp || !arr_a || !arr_b)
 		ft_display_exit();
+	// printf("\nSIZE : %d\n", size);
+	// printf("\n\nARR_A\tARR_B\n");
 	while (++i < size)
 	{
+		// printf("%d\t%d\n", arr_a[i], arr_b[i]);
 		if ((arr_a[i] > 0 && arr_b[i] > 0)
 			|| (arr_a[i] < 0 && arr_b[i] < 0))
 		{
@@ -129,7 +132,8 @@ int	ft_best_nbr_b(t_list **stack_b, int size_b, t_list **stack_a, int size_a)
 		arr_a[i] = ft_the_needed_a(*stack_a, tmp_b->content, size_a);
 		tmp_b = tmp_b->next;
 	}
-	i = ft_best_comb(ft_intcpy(arr_a, size_a),
+	// printf("\nSIZE LIS : %d\n", size_a);
+	i = ft_best_comb(ft_intcpy(arr_a, size_b),
 			ft_intcpy(arr_b, size_b), size_b);
 	return (ft_move_a(arr_a[i], arr_b[i], stack_a, stack_b));
 }

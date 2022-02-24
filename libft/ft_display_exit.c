@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_display_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
+/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 12:42:41 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/12 16:26:37 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/24 16:48:52 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_display_exit(void)
 {
-	ft_putstr_fd("Error\n", 1);
-	exit(1);
+	ft_putstr_fd("Error\n", 0);
+	exit(0);
 }
