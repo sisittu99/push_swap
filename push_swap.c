@@ -34,9 +34,6 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 	dst = ft_copy_cont(*stack_a, size);
 	arr = ft_define_lis(dst, size, &i);
 	ft_move_to_b(stack_a, stack_b, arr, i);
-	lst_display(*stack_b);
-	lst_display(*stack_a);
-	exit(0);
 	ft_move_to_a(stack_a, stack_b);
 	ft_search_min(stack_a, size);
 	free (dst);

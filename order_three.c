@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   order_three.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
+/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:54:06 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 16:28:54 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/24 15:42:57 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,14 @@ int	ft_min_nbr(int a, int b)
 
 int	ft_max_nbr(int a, int b)
 {
-	if (a > b)
+	int	a1;
+	int	b1;
+
+	a1 = a * a;
+	b1 = b * b;
+	if (a1 > b1)
 		return (a);
-	if (b > a)
+	if (b1 > a1)
 		return (b);
 	else
 		return (a);

@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/24 14:42:34 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/24 15:42:59 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,37 @@ int	ft_best_comb(int *arr_a, int *arr_b, int size)
 	int	pos;
 
 	i = -1;
-	pos = 0;
 	tmp = (int *) malloc (sizeof(int) * size);
 	if (!tmp || !arr_a || !arr_b)
 		ft_display_exit();
 	while (++i < size)
 	{
-		if (arr_a[i] < 0)
-			arr_a[i] *= -1;
-		if (arr_b[i] < 0)
-			arr_b[i] *= -1;
-		if (arr_a[i] > 0 && arr_b[i] > 0)
+		if ((arr_a[i] > 0 && arr_b[i] > 0)
+			|| (arr_a[i] < 0 && arr_b[i] < 0))
+		{
 			tmp[i] = ft_max_nbr(arr_a[i], arr_b[i]);
+			if (tmp[i] < 0)
+				tmp[i] *= -1;
+		}
 		else
+		{
+			if (arr_a[i] < 0)
+				arr_a[i] *= -1;
+			if (arr_b[i] < 0)
+				arr_b[i] *= -1;
 			tmp[i] = arr_a[i] + arr_b[i];
+		}
 	}
-	i = 0;
+	i = -1;
+	pos = 0;
+	// printf("\nprinting every tmp value:\n");
 	while (++i < size)
+	{
+		// printf(" %d \n", tmp[i]);
 		if (tmp[i] < tmp[pos])
 			pos = i;
+	}
+	// printf("\nVal. I:\t%d\n", tmp[pos]);
 	return (pos);
 }
 
