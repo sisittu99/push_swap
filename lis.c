@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 12:24:53 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/24 15:42:54 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/24 18:17:11 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,19 @@ int	*ft_lis_util(int *dst, int *arr, int max, int size)
 	int	i;
 	int	j;
 	int	*val;
-	int	cpy;
 
 	i = size;
-	j = size - 1;
-	cpy = max;
+	j = size;
 	val = (int *) malloc (sizeof(int) * max);
 	if (!val)
 		ft_display_exit();
-	val[max - 1] = size + 1;
+	val[max - 1] = -1;
 	while (max >= 1)
 	{
 		i = j;
 		while (--i >= 0)
 		{
-			if (arr[i] == max && ((dst[i] < val[max]) || val[max - 1] == size + 1))
+			if (arr[i] == max && ((dst[i] < val[max]) || val[max - 1] == -1))
 			{
 				val[max - 1] = dst[i];
 				j = i;

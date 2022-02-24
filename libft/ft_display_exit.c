@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 12:42:41 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/24 16:48:52 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/24 16:52:26 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_display_exit(void)
 {
-	ft_putstr_fd("Error\n", 0);
+	ft_putstr_fd("Error\n", 2);
 	exit(0);
 }

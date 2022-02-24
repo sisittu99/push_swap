@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 		ft_write_lst(&stack_a, argc, argv, 1);
 	size = ft_lstsize(stack_a);
 	ft_lst_split(&stack_a, &stack_b, size);
-	// printf("\nReturn List:");
-	// lst_display(stack_a);
+	printf("\nReturn List:");
+	lst_display(stack_a);
 	return (0);
 }

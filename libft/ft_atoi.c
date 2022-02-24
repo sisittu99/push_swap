@@ -6,23 +6,11 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 11:37:17 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/18 14:53:42 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/24 17:40:29 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	long_max(int j, int x)
-{
-	int	y;
-
-	y = 0;
-	if (j >= 19 && x == 1)
-		y = -1;
-	if (j >= 19 && x == -1)
-		y = 0;
-	return (y);
-}
 
 int	ft_atoi(const char *str)
 {
@@ -44,11 +32,11 @@ int	ft_atoi(const char *str)
 		y = (y * 10) + ((*str - 48) % 10);
 		str++;
 		j++;
+		if (!ft_isdigit(*str) && *str != '\0')
+			ft_display_exit();
 	}
 	if (!ft_isdigit(*str) && *str != '\0')
-		ft_display_exit();
+			ft_display_exit();
 	y *= x;
-	if (j >= 19)
-		return (long_max(j, x));
 	return (y);
 }
