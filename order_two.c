@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   order_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
+/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:50:47 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/22 16:03:00 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/24 14:38:52 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_the_needed(int min, int max, int size)
 
 int	ft_the_needed_b(int max, int size)
 {
-	if (max == size)
-		return (-1);
+	// if (max == size)
+	// 	return (-1);
 	if (max > (size / 2))
 		max = max - size;
 	return (max);

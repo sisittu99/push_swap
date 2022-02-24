@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   order.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
+/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/22 16:38:42 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/24 14:42:34 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,25 @@
 
 int	ft_best_nbr_a(t_list *stack_a, int size, int *arr, int max)
 {
-	int	pos[4];
+	int	pos;
+	int	i;
 
-	pos[0] = -1;
-	pos[1] = 0;
-	pos[2] = 0;
-	pos[3] = 0;
+	pos = 0;
+	i = 0;
 	while (stack_a != NULL)
 	{
-		pos[3] = 0;
-		while (stack_a->content != arr[pos[3]] && pos[3] <= max - 1)
+		i = 0;
+		while (stack_a->content != arr[i] && i < max)
 		{
-			if (pos[3] == max - 1)
-			{
-				pos[1] = pos[2];
-				if (pos[0] == -1)
-					pos[0] = pos[2];
-			}
-			pos[3]++;
+			if (i == max - 1)
+				return (pos);
+			i++;
 		}
 		stack_a = stack_a->next;
-		pos[2]++;
+		pos++;
 	}
-	if (pos[0] == -1)
-		return (size + 1);
-	return (ft_the_needed(pos[0], pos[1], size));
+	size = -1;
+	return (size);
 }
 
 int	ft_best_comb(int *arr_a, int *arr_b, int size)
@@ -81,23 +75,17 @@ int	ft_best_comb(int *arr_a, int *arr_b, int size)
 
 int	ft_move_a(int a, int b, t_list **stack_a, t_list **stack_b)
 {
-	if (a < 0 && b < 0)
+	while (a < 0 && b < 0)
 	{
-		while (a < 0 && b < 0)
-		{
-			ft_rrr(stack_a, stack_b);
-			a++;
-			b++;
-		}
+		ft_rrr(stack_a, stack_b);
+		a++;
+		b++;
 	}
-	if (a > 0 && b > 0)
+	while (a > 0 && b > 0)
 	{
-		while (a > 0 && b > 0)
-		{
-			ft_rr(stack_a, stack_b);
-			a--;
-			b--;
-		}
+		ft_rr(stack_a, stack_b);
+		a--;
+		b--;
 	}
 	if (a < 0)
 		while (a++ < 0)

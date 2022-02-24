@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/23 17:38:07 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/24 14:16:29 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		return_max_or_min(int cont, int *max_n_min, int size);
 int		*ft_intcpy(int	*arr, int size);
 void	ft_search_min(t_list **stack_a, int size);
 void	ft_sort_three(t_list **stack_a);
-int		*ft_lis_util(int *dst, int *arr, int max, int j);
+int		*ft_lis_util(int *dst, int *arr, int max, int size);
 void	ft_sort_five(t_list **stack_a, t_list **stack_b);
 
 void	lst_display(t_list *stack_a);

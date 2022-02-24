@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:23:41 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/23 17:37:50 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/24 14:42:19 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,13 @@ void	ft_move_to_b(t_list **stack_a, t_list **stack_b, int *arr, int max)
 
 	size_a = ft_lstsize(*stack_a);
 	i = ft_best_nbr_a(*stack_a, size_a, arr, max);
-	while (i != size_a + 1)
+	while (i != -1)
 	{
-		if (i < 0)
-			while (i++ < 0)
-				ft_rra(stack_a);
-		else if (i > 0 && i < size_a)
+		if (i > 0)
+		{
 			while (i-- > 0)
 				ft_ra(stack_a);
+		}
 		ft_pb(stack_a, stack_b);
 		i = ft_best_nbr_a(*stack_a, --size_a, arr, max);
 	}
