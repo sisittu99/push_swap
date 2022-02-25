@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:50:47 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/24 18:22:04 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/25 12:26:47 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	ft_the_needed(int min, int max, int size)
 
 int	ft_the_needed_b(int max, int size)
 {
-	// if (max == size)
-	// 	return (-1);
 	if (max > (size / 2))
 		max = max - size;
 	return (max);

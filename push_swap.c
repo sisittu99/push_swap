@@ -37,6 +37,7 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 	ft_move_to_a(stack_a, stack_b);
 	ft_search_min(stack_a, size);
 	free (dst);
+	free (arr);
 }
 
 int	main(int argc, char **argv)
@@ -50,7 +51,7 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	size = 0;
 	if (argc < 2)
-		ft_display_exit();
+		return (0);
 	if (argc == 2)
 	{
 		arg = ft_split(argv[1], ' ');
@@ -62,7 +63,9 @@ int	main(int argc, char **argv)
 		ft_write_lst(&stack_a, argc, argv, 1);
 	size = ft_lstsize(stack_a);
 	ft_lst_split(&stack_a, &stack_b, size);
-	printf("\nReturn List:");
-	lst_display(stack_a);
+	// printf("\nReturn List:");
+	// lst_display(stack_a);
+	ft_lst_delete(&stack_a);
+	ft_lst_delete(&stack_b);
 	return (0);
 }

@@ -3,15 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
+/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 16:31:20 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/22 16:37:48 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/25 13:28:11 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include <stdio.h>
+
+void	ft_lst_delete(t_list **stack)
+{
+	t_list	*tmp;
+
+	tmp = *stack;
+	if (*stack == NULL)
+		return (0);
+	while (stack != NULL)
+	{
+		tmp = (*stack)->next;
+		free (*stack);
+		*stack = tmp;
+	}
+}
 
 void	ft_lstcheck(t_list *stack_a, int check)
 {
@@ -38,7 +53,7 @@ void	ft_lst_order(t_list **stack_a)
 		tmp = tmp->next;
 		tmp2 = tmp2->next;
 	}
-	ft_display_exit();
+	exit(0);
 }
 
 void	ft_write_lst(t_list **stack_a, int argc, char **argv, int i)

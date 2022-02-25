@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/24 18:22:02 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/25 13:13:57 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int		*ft_lis_util(int *dst, int *arr, int max, int size);
 void	ft_sort_five(t_list **stack_a, t_list **stack_b);
 
 void	lst_display(t_list *stack_a);
+void	ft_lst_delete(t_list **stack);
 
 #endif
