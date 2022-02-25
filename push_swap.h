@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/25 17:19:59 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/25 19:45:07 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_sort_three(t_list **stack_a);
 int		*ft_lis_util(int *dst, int *arr, int max, int size);
 void	ft_sort_five(t_list **stack_a, t_list **stack_b);
 void	ft_lst_inverted(t_list **stack_a);
-
 
 void	lst_display(t_list *stack_a);
 void	ft_lst_delete(t_list **stack);

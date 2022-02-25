@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
+/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 11:51:53 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/17 15:42:11 by mcerchi          ###   ########.fr       */
+/*   Updated: 2022/02/25 19:19:25 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 void	ft_display_exit(void);
+char	*ft_get_next_line_gnl(int fd);
+char	*ft_read_line_gnl(int fd, char *dst);
+char	*ft_strjoin_gnl(char *s, char c);
+int		ft_strlen_gnl(char *s);
 
 #endif

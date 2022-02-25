@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 16:31:20 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/25 18:20:43 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/25 19:46:41 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ft_lst_delete(t_list **stack)
 {
 	t_list	*tmp;
 
-	tmp = *stack;
 	if (*stack == NULL)
 		return ;
+	tmp = *stack;
 	while (*stack != NULL)
 	{
 		tmp = (*stack)->next;
@@ -50,7 +50,13 @@ void	ft_lst_order(t_list **stack_a)
 	while (tmp2 != NULL)
 	{
 		if (tmp->content > tmp2->content)
+		{
+			// ft_lst_delete(&tmp);
+			// ft_lst_delete(&tmp2);
+			// tmp = NULL;
+			// tmp2 = NULL;
 			return ;
+		}
 		tmp = tmp->next;
 		tmp2 = tmp2->next;
 	}
@@ -89,6 +95,8 @@ void	ft_write_lst(t_list **stack_a, int argc, char **argv, int i)
 	}
 	ft_lst_order(stack_a);
 	ft_lst_inverted(stack_a);
+	ft_lst_delete(&tmp);
+	tmp = NULL;
 }
 
 void	lst_display(t_list *stack_a)

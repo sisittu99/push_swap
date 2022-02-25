@@ -22,7 +22,7 @@ OBJ		=	$(SRC:.c=.o)
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 $(NAME):	$(OBJ)
 			make -C ./libft
 			$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
