@@ -6,7 +6,7 @@
 #    By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/13 16:37:50 by fdrudi            #+#    #+#              #
-#    Updated: 2022/02/25 13:29:13 by fdrudi           ###   ########.fr        #
+#    Updated: 2022/02/25 13:88:004 by fdrudi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,7 @@ OBJ		=	$(SRC:.c=.o)
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror
-
-RM		=	rm -f
-
+CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address
 $(NAME):	$(OBJ)
 			make -C ./libft
 			$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)

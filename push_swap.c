@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
+	arg = NULL;
 	size = 0;
 	if (argc < 2)
 		return (0);
@@ -58,10 +59,13 @@ int	main(int argc, char **argv)
 		while (arg[size] != NULL)
 			size++;
 		ft_write_lst(&stack_a, size, arg, 0);
+		free(arg);
 	}
 	else if (argc >= 3)
 		ft_write_lst(&stack_a, argc, argv, 1);
 	size = ft_lstsize(stack_a);
+	if (size == 2)
+		return (0);
 	ft_lst_split(&stack_a, &stack_b, size);
 	// printf("\nReturn List:");
 	// lst_display(stack_a);

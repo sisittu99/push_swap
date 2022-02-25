@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/25 12:26:47 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/25 17:44:31 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,7 @@ int	ft_best_comb(int *arr_a, int *arr_b, int size)
 	{
 		if ((arr_a[i] > 0 && arr_b[i] > 0)
 			|| (arr_a[i] < 0 && arr_b[i] < 0))
-		{
 			tmp[i] = ft_max_nbr(arr_a[i], arr_b[i]);
-			if (tmp[i] < 0)
-				tmp[i] *= -1;
-		}
 		else
 		{
 			if (arr_a[i] < 0)

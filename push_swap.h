@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/25 13:13:57 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/25 17:19:59 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int		ft_the_needed(int min, int max, int size);
 int		ft_best_nbr_b(t_list **stack_b, int size_b,
 			t_list **stack_a, int size_a);
 int		ft_best_nbr_a(t_list *stack_a, int size, int *arr, int max);
-void	ft_check_argv(int argc, char *argv, t_list **stack_a);
 int		*ft_define_lis(int *dst, int size, int *max);
 int		*ft_long_lis(int *dst, int *arr, int size, int *ret);
 int		ft_the_needed_b(int max, int size);
@@ -53,6 +52,8 @@ void	ft_search_min(t_list **stack_a, int size);
 void	ft_sort_three(t_list **stack_a);
 int		*ft_lis_util(int *dst, int *arr, int max, int size);
 void	ft_sort_five(t_list **stack_a, t_list **stack_b);
+void	ft_lst_inverted(t_list **stack_a);
+
 
 void	lst_display(t_list *stack_a);
 void	ft_lst_delete(t_list **stack);
