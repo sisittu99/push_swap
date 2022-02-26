@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_one.c                                   :+:      :+:    :+:   */
+/*   check_op_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 13:18:25 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/26 10:46:44 by fdrudi           ###   ########.fr       */
+/*   Created: 2022/02/26 11:13:06 by mcerchi           #+#    #+#             */
+/*   Updated: 2022/02/26 13:07:58 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-void	ft_sa(t_list **stack_a)
+void	ft_sa_check(t_list **stack_a)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -22,11 +22,10 @@ void	ft_sa(t_list **stack_a)
 	*stack_a = tmp2;
 	tmp->next = tmp2->next;
 	tmp2->next = tmp;
-	write(1, "sa\n", 3);
 	return ;
 }
 
-void	ft_sb(t_list **stack_b)
+void	ft_sb_check(t_list **stack_b)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -36,11 +35,10 @@ void	ft_sb(t_list **stack_b)
 	*stack_b = tmp2;
 	tmp->next = tmp2->next;
 	tmp2->next = tmp;
-	write(1, "sb\n", 3);
 	return ;
 }
 
-void	ft_ss(t_list **stack_a, t_list **stack_b)
+void	ft_ss_check(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -57,11 +55,10 @@ void	ft_ss(t_list **stack_a, t_list **stack_b)
 	*stack_b = tmp2;
 	tmp->next = tmp2->next;
 	tmp2->next = tmp;
-	write(1, "ss\n", 3);
 	return ;
 }
 
-void	ft_pa(t_list **stack_b, t_list **stack_a)
+void	ft_pa_check(t_list **stack_b, t_list **stack_a)
 {
 	t_list	*tmp;
 
@@ -71,11 +68,10 @@ void	ft_pa(t_list **stack_b, t_list **stack_a)
 	*stack_b = (*stack_b)->next;
 	tmp->next = *stack_a;
 	*stack_a = tmp;
-	write(1, "pa\n", 3);
 	return ;
 }
 
-void	ft_pb(t_list **stack_a, t_list **stack_b)
+void	ft_pb_check(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*tmp;
 
@@ -85,6 +81,5 @@ void	ft_pb(t_list **stack_a, t_list **stack_b)
 	*stack_a = (*stack_a)->next;
 	tmp->next = *stack_b;
 	*stack_b = tmp;
-	write(1, "pb\n", 3);
 	return ;
 }

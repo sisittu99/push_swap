@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:54:06 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/25 17:44:15 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:07:52 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,30 @@ int	ft_max_nbr(int a, int b)
 		return (b);
 	else
 		return (a);
+}
+
+void	ft_search_min(t_list **stack_a, int size)
+{
+	int		pos;
+	int		pos_min;
+	int		min;
+	t_list	*tmp;
+
+	pos_min = 0;
+	pos = 0;
+	tmp = *stack_a;
+	min = tmp->content;
+	while (pos < size)
+	{
+		if (min > tmp->content)
+		{
+			min = tmp->content;
+			pos_min = pos;
+		}
+		tmp = tmp->next;
+		pos++;
+	}
+	tmp = NULL;
+	pos = ft_the_needed_b(pos_min, size);
+	ft_move_a(pos, 0, stack_a, &tmp);
 }

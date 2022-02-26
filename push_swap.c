@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/21 11:15:1 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:07:46 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@ void	ft_lst_split(t_list **stack_a, t_list **stack_b, int size)
 	free (arr);
 }
 
+void	ft_check_argv(int argc, char **argv, t_list **stack_a)
+{
+	int		size;
+	char	**arg;
+
+	arg = NULL;
+	size = 0;
+	if (argc == 2)
+	{
+		arg = ft_split(argv[1], ' ');
+		while (arg[size] != NULL)
+			size++;
+		ft_write_lst(stack_a, size, arg, 0);
+		free(arg);
+	}
+	else if (argc >= 3)
+		ft_write_lst(stack_a, argc, argv, 1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
@@ -53,22 +72,12 @@ int	main(int argc, char **argv)
 	size = 0;
 	if (argc < 2)
 		return (0);
-	if (argc == 2)
-	{
-		arg = ft_split(argv[1], ' ');
-		while (arg[size] != NULL)
-			size++;
-		ft_write_lst(&stack_a, size, arg, 0);
-		free(arg);
-	}
-	else if (argc >= 3)
-		ft_write_lst(&stack_a, argc, argv, 1);
+	else
+		ft_check_argv(argc, argv, &stack_a);
 	size = ft_lstsize(stack_a);
 	if (size == 2)
 		return (0);
 	ft_lst_split(&stack_a, &stack_b, size);
-	// printf("\nReturn List:");
-	// lst_display(stack_a);
 	ft_lst_delete(&stack_a);
 	ft_lst_delete(&stack_b);
 	return (0);

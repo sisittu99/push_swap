@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/25 17:44:31 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:07:48 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,28 @@ int	ft_best_nbr_a(t_list *stack_a, int size, int *arr, int max)
 	return (size);
 }
 
+int	ft_best_comb_helper(int *arr_a, int *arr_b, int *tmp, int size)
+{
+	int	i;
+	int	pos;
+
+	pos = 0;
+	i = -1;
+	while (++i < size)
+	{
+		if (tmp[i] < tmp[pos])
+			pos = i;
+	}
+	free(arr_a);
+	free(arr_b);
+	free(tmp);
+	return (pos);
+}
+
 int	ft_best_comb(int *arr_a, int *arr_b, int size)
 {
 	int	*tmp;
 	int	i;
-	int	pos;
 
 	i = -1;
 	tmp = (int *) malloc (sizeof(int) * size);
@@ -68,14 +85,7 @@ int	ft_best_comb(int *arr_a, int *arr_b, int size)
 			tmp[i] = arr_a[i] + arr_b[i];
 		}
 	}
-	i = -1;
-	pos = 0;
-	while (++i < size)
-	{
-		if (tmp[i] < tmp[pos])
-			pos = i;
-	}
-	return (pos);
+	return (ft_best_comb_helper(arr_a, arr_b, tmp, size));
 }
 
 int	ft_move_a(int a, int b, t_list **stack_a, t_list **stack_b)
@@ -124,31 +134,8 @@ int	ft_best_nbr_b(t_list **stack_b, int size_b, t_list **stack_a, int size_a)
 	}
 	i = ft_best_comb(ft_intcpy(arr_a, size_b),
 			ft_intcpy(arr_b, size_b), size_b);
-	return (ft_move_a(arr_a[i], arr_b[i], stack_a, stack_b));
-}
-
-void	ft_search_min(t_list **stack_a, int size)
-{
-	int		pos;
-	int		pos_min;
-	int		min;
-	t_list	*tmp;
-
-	pos_min = 0;
-	pos = 0;
-	tmp = *stack_a;
-	min = tmp->content;
-	while (pos < size)
-	{
-		if (min > tmp->content)
-		{
-			min = tmp->content;
-			pos_min = pos;
-		}
-		tmp = tmp->next;
-		pos++;
-	}
-	tmp = NULL;
-	pos = ft_the_needed_b(pos_min, size);
-	ft_move_a(pos, 0, stack_a, &tmp);
+	i = ft_move_a(arr_a[i], arr_b[i], stack_a, stack_b);
+	free(arr_a);
+	free(arr_b);
+	return (i);
 }

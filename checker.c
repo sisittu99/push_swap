@@ -6,18 +6,72 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:30:28 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/25 19:25:37 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:24:02 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "push_swap.h"
 
+void	ft_rrr_or_death(t_list **stack_a, t_list **stack_b, char *str)
+{
+	if (ft_strcmp(str, "rra\n"))
+		ft_rra_check(stack_a);
+	else if (ft_strcmp(str, "rrb\n"))
+		ft_rrb_check(stack_b);
+	else if (ft_strcmp(str, "rrr\n"))
+		ft_rrr_check(stack_a, stack_b);
+	else
+		ft_display_exit();
+}
+
+void	ft_exec_sort(t_list **stack_a, t_list **stack_b, char *str)
+{
+	while (str != NULL)
+	{
+		if (ft_strcmp(str, "sa\n"))
+			ft_sa_check(stack_a);
+		else if (ft_strcmp(str, "sb\n"))
+			ft_sb_check(stack_b);
+		else if (ft_strcmp(str, "ss\n"))
+			ft_ss_check(stack_a, stack_b);
+		else if (ft_strcmp(str, "pa\n"))
+			ft_pa_check(stack_b, stack_a);
+		else if (ft_strcmp(str, "pb\n"))
+			ft_pb_check(stack_a, stack_b);
+		else if (ft_strcmp(str, "ra\n"))
+			ft_ra_check(stack_a);
+		else if (ft_strcmp(str, "rb\n"))
+			ft_rb_check(stack_b);
+		else if (ft_strcmp(str, "rr\n"))
+			ft_rr_check(stack_a, stack_b);
+		else
+			ft_rrr_or_death(stack_a, stack_b, str);
+		str = ft_get_next_line_gnl(0);
+	}
+}
+
+void	ft_check_sort(t_list *stack_a)
+{
+	while (stack_a->next != NULL)
+	{
+		if (stack_a->content > (stack_a->next)->content)
+		{
+			write(1, "KO\n", 3);
+			return ;
+		}
+		stack_a = stack_a->next;
+	}
+	write(1, "OK\n", 3);
+	return ;
+}
+
 int	main(int argc, char *argv[])
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
 	char	**arg;
+	char	*str;
 	int		size;
 
 	stack_a = NULL;
@@ -31,9 +85,13 @@ int	main(int argc, char *argv[])
 		arg = ft_split(argv[1], ' ');
 		while (arg[size] != NULL)
 			size++;
-		ft_write_lst(&stack_a, size, arg, 0);
+		ft_check_write_lst(&stack_a, size, arg, 0);
 		free(arg);
 	}
 	else if (argc >= 3)
-		ft_write_lst(&stack_a, argc, argv, 1);
+		ft_check_write_lst(&stack_a, argc, argv, 1);
+	str = ft_get_next_line_gnl(0);
+	ft_exec_sort(&stack_a, &stack_b, str);
+	ft_check_sort(stack_a);
+	return (0);
 }

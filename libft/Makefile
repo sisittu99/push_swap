@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+         #
+#    By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 11:52:05 by mcerchi           #+#    #+#              #
-#    Updated: 2022/02/17 15:42:28 by mcerchi          ###   ########.fr        #
+#    Updated: 2022/02/26 12:42:43 by fdrudi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c\
 				ft_display_exit.c\
 				ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c\
 				ft_lstdelone.c ft_lstiter.c ft_lstlast.c\
-				ft_lstnew.c ft_lstsize.c ft_lstmap.c\
+				ft_lstnew.c ft_lstsize.c ft_lstmap.c ft_strcmp.c\
+				ft_get_next_line.c\
 
 OBJS		= ${SRCS:.c=.o}
 

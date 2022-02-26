@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 11:51:53 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/25 19:19:25 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:07:49 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char	*ft_get_next_line_gnl(int fd);
 char	*ft_read_line_gnl(int fd, char *dst);
 char	*ft_strjoin_gnl(char *s, char c);
 int		ft_strlen_gnl(char *s);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif
