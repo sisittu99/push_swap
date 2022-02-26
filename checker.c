@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:30:28 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/26 13:24:02 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:27:24 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,30 +66,39 @@ void	ft_check_sort(t_list *stack_a)
 	return ;
 }
 
-int	main(int argc, char *argv[])
+void	ft_check_argv_c(int argc, char **argv, t_list **stack_a)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
-	char	**arg;
-	char	*str;
 	int		size;
+	char	**arg;
 
-	stack_a = NULL;
-	stack_b = NULL;
 	arg = NULL;
 	size = 0;
-	if (argc < 2)
-		return (0);
 	if (argc == 2)
 	{
 		arg = ft_split(argv[1], ' ');
 		while (arg[size] != NULL)
 			size++;
-		ft_check_write_lst(&stack_a, size, arg, 0);
+		ft_check_write_lst(stack_a, size, arg, 0);
 		free(arg);
 	}
 	else if (argc >= 3)
-		ft_check_write_lst(&stack_a, argc, argv, 1);
+		ft_check_write_lst(stack_a, argc, argv, 1);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_list	*stack_a;
+	t_list	*stack_b;
+	char	*str;
+	int		size;
+
+	stack_a = NULL;
+	stack_b = NULL;
+	size = 0;
+	if (argc < 2)
+		return (0);
+	else
+		ft_check_argv_c(argc, argv, &stack_a);
 	str = ft_get_next_line_gnl(0);
 	ft_exec_sort(&stack_a, &stack_b, str);
 	ft_check_sort(stack_a);

@@ -6,7 +6,7 @@
 /*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/26 13:24:48 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:27:21 by fdrudi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_rrr_or_death(t_list **stack_a, t_list **stack_b, char *str);
 void	ft_check_write_lst(t_list **stack_a, int argc, char **argv, int i);
 void	ft_check_lst_inverted(t_list **stack_a);
 void	ft_check_sort(t_list *stack_a);
-
+void	ft_check_argv_c(int argc, char **argv, t_list **stack_a);
 void	ft_sa_check(t_list **stack_a);
 void	ft_sb_check(t_list **stack_b);
 void	ft_ss_check(t_list **stack_a, t_list **stack_b);
