@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 12:23:41 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/26 10:33:25 by fdrudi           ###   ########.fr       */
+/*   Created: 2022/02/26 14:49:57 by mcerchi           #+#    #+#             */
+/*   Updated: 2022/02/26 14:49:58 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "./libft/libft.h"
 #include "push_swap.h"
 

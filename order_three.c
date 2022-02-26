@@ -3,24 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   order_three.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 12:54:06 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/26 13:07:52 by fdrudi           ###   ########.fr       */
+/*   Created: 2022/02/26 14:49:00 by mcerchi           #+#    #+#             */
+/*   Updated: 2022/02/26 14:49:38 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "push_swap.h"
-
-/*
-* contatori nelle prox 2 funzioni:
-*	#0:	max
-*	#1:	min
-*	#2:	pos_max
-*	#3:	pos_min
-*	#4:	pos
-*/
 
 int	return_max_or_min(int cont, int *max_n_min, int size)
 {

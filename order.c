@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   order.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:56:05 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/26 13:07:48 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 14:49:42 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-/*
-*	contatori nella prox funzione:
-*	#0:	int	pos_first;
-*	#1:	int	pos_last;
-*	#2:	int	pos;
-*	#3:	int	i;
-*/
 
 int	ft_best_nbr_a(t_list *stack_a, int size, int *arr, int max)
 {

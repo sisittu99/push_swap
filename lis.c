@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lis.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/26 11:30:34 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/26 13:07:54 by fdrudi           ###   ########.fr       */
+/*   Created: 2022/02/26 14:48:37 by mcerchi           #+#    #+#             */
+/*   Updated: 2022/02/26 14:48:39 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
-#include <stdio.h>
 
 int	*ft_lis_util_helper(int max)
 {

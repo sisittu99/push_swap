@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:47:06 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/26 13:27:21 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 14:37:16 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ int		*ft_long_lis(int *dst, int *arr, int size, int *ret);
 int		*ft_lis_util(int *dst, int *arr, int max, int size);
 int		*ft_lis_util_helper(int max);
 
-
-
 void	ft_exec_sort(t_list **stack_a, t_list **stack_b, char *str);
 void	ft_rrr_or_death(t_list **stack_a, t_list **stack_b, char *str);
 void	ft_check_write_lst(t_list **stack_a, int argc, char **argv, int i);
@@ -82,9 +80,5 @@ void	ft_rr_check(t_list **stack_a, t_list **stack_b);
 void	ft_rra_check(t_list **stack_a);
 void	ft_rrb_check(t_list **stack_b);
 void	ft_rrr_check(t_list **stack_a, t_list **stack_b);
-
-
-void	lst_display(t_list *stack_a);
-
 
 #endif

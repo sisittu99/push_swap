@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 16:31:20 by fdrudi            #+#    #+#             */
-/*   Updated: 2022/02/26 13:07:47 by fdrudi           ###   ########.fr       */
+/*   Created: 2022/02/26 14:50:06 by mcerchi           #+#    #+#             */
+/*   Updated: 2022/02/26 14:50:08 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
 
 void	ft_lst_delete(t_list **stack)
 {
@@ -90,15 +89,4 @@ void	ft_write_lst(t_list **stack_a, int argc, char **argv, int i)
 	ft_lst_order(stack_a);
 	ft_lst_inverted(stack_a);
 	tmp = NULL;
-}
-
-void	lst_display(t_list *stack_a)
-{
-	printf("\n");
-	while (stack_a != NULL)
-	{
-		printf("|%d| -> ", stack_a->content);
-		stack_a = stack_a->next;
-	}
-	printf("NULL\n");
 }

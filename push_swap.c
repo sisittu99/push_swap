@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:53:52 by mcerchi           #+#    #+#             */
-/*   Updated: 2022/02/26 13:07:46 by fdrudi           ###   ########.fr       */
+/*   Updated: 2022/02/26 14:49:44 by mcerchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "./libft/libft.h"
 #include "push_swap.h"
 

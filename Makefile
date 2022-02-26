@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fdrudi <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: mcerchi <mcerchi@student.42roma.it>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/13 16:37:50 by fdrudi            #+#    #+#              #
-#    Updated: 2022/02/26 13:07:45 by fdrudi           ###   ########.fr        #
+#    Created: 2022/02/26 14:47:54 by mcerchi           #+#    #+#              #
+#    Updated: 2022/02/26 14:49:31 by mcerchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ fclean: 	clean
 			make fclean -C libft
 			${RM} $(NAME) $(NAME_BONUS) ${OBJ} $(OBJ_BONUS)
 
-re:			fclean $(NAME) $(NAME_BONUS)
+re:			fclean bonus
 
 bonus:		all $(OBJ_BONUS)
 			$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT)
