@@ -36,5 +36,5 @@ _N.b.:	purtroppo senza il massimo dei voti, il bonus non verrà contato. 90/100 
 Veniamo ora alla vera bestia di Satana di questo progetto: **il numero di mosse possibili.**
 Se leggete approfonditamente il subject, non troverete comunque un riferimento a riguardo. Vi basta tuttavia sapere che per ottenere il massimo dei voti servono _700 mosse con 100 numeri_ e _5.500 mosse con 500 numeri_.
 
-
+[WORK IN PROGRESS]
 
