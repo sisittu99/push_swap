@@ -16,6 +16,7 @@ Il progetto richiede di ordinare una qualsiasi sequenza di numeri interi, esatta
 Tuttavia, non stareste leggendo questo testo se non apparteneste ad un qualsiasi corso della 42 in giro per il mondo, ed è statisticamente appurato che la vostra probabilità di perdere capelli aumenta proporzionalmente al vostro leggere nuovi subject.
 Quindi, senza alcun indugio, spieghiamo le particolarità delle richieste!
 
+===
 
 #### Le mosse
 Abbiamo anzitutto due *stack*: una riempita dai numeri casuali dati, la "a", e una vuota che ci servirà da appoggio, la "b".
@@ -25,10 +26,10 @@ Altre idee che abbiamo sentito da colleghi sono quelle di lavorare a strutture, 
 
 Le mosse a nostra disposizione sono 11, ma per semplicità le andremo a suddividere nelle 4 tipologie:
 
-* sa 	/	sb	/	ss	: _**switch**_, scambia il primo numero della stack col secondo.
-* ra	/	rb	/	rr	: ___rotate___, sposta l'ultimo numero della stack in prima posizione, facendo conseguentemente scalare tutti gli altri.
-* rra	/	rrb	/	rrr	: ___reverse rotate___, banalmente la stessa cosa di cui sopra ma nel senso opposto.
-* pa	/	pb			: ____push in *___, sposta il numero in prima posizione della stack opposta nella stack nominata. Quindi pb porta il primo numero da _a_ a _b_.
+* `sa` 	/	`sb`	/	`ss`	: _**switch**_, scambia il primo numero della stack col secondo.
+* `ra`	/	`rb`	/	`rr` 	: ___rotate___, sposta l'ultimo numero della stack in prima posizione, facendo conseguentemente scalare tutti gli altri.
+* `rra`	/	`rrb`	/	`rrr`	: ___reverse rotate___, banalmente la stessa cosa di cui sopra ma nel senso opposto.
+* `pa`	/	`pb`			: ____push in *___, sposta il numero in prima posizione della stack opposta nella stack nominata. Quindi pb porta il primo numero da _a_ a _b_.
 
 Non starò qui a spiegare per bene come funzionano e come vanno utilizzate, penso che a riguardo ci siano ottimi lavori scritti da colleghe e colleghi in giro per il mondo. Vi lascio un link che ha aiutato me e [il mio compagno di merende](https://github.com/fdrudi "Go follow him!") durante il brainstorming iniziale.
 Sappi che le sue istruzioni sono valide anche per il nostro progetto fino alla _size 3_ e _size 5_!
@@ -94,12 +95,7 @@ A fine lavoro vi risulterà una struttura simile:
 
 > Ancora non vi ho parlato del visualizer? [Vi tornerà molto utile a fine stesura del codice...](https://github.com/o-reo/push_swap_visualizer)
 
---------------------------------
-
-> povero gabbiano ha perduto la compagna
-
----------------------------------
-
+***
 ### L'ORDINAMENTO e L'OTTIMIZZAZIONE
 
 Nei passaggi precedenti non ho esternato il motivo per cui cominciamo il progetto calcolando il LIS. Nel caso non lo abbiate capito, l'obiettivo è quello di inserire tutti gli altri numeri in uno stack già ordinato, seppur non completo! Questo ci permette infatti di effettuare scambi tra lo _stack_a_ e lo _stack_b_ soltanto una volta, per poi chiudere subito l'ordinamento.
@@ -107,18 +103,58 @@ Il modo per spostare i numeri puó essere uno soltanto: spostare il primo numero
 
 Abbiamo tuttavia un problema non banale: inserire sempre il primo numero della _stack_b_ nella _stack_a_ fa roteare quest'ultima a vuoto troppe volte, aumentando esponenzialmente le mosse. 
 > Vi basti sapere che l'algoritmo più banale possibile supera abbondantemente le 100.000 mosse con 500 numeri...
-
-
 Quindi, come ottimizzare?
 
 La nostra soluzione è molto a rischio di TLE (lett. _Time Limit Exceeded_), siamo consapevoli che esistono soluzioni più veloce e meno rischiose, ma siamo estremamente certi che a livello teorico-pratico funzioni e che permetta una delle migliori ottimizzazioni su tutte le possibili.
 Iniziamo!
 
+===
 
-#### IL CALCOLO DELLE MOSSE
+#### Il calcolo delle mosse
 
 Se state immaginando una quindicina di funzioni da scrivere dopo questo titolo, probabilmente avete sottostimato il lavoro che avete ancora di fronte.
 
+Non c'è molto da fare: dovete calcolarvi per ogni numero quante mosse dovete fare nel migliore dei casi. Molti miei colleghi hanno utilizzato questa logica ragionando così:
+
+1. Create due array di appoggio (`mov_a` e `mov_b` possono andare benissimo!) dove salvare i valori di cui sotto 😉 
+> Entrambi devono avere dimensione `size_b`: infatti i numeri da salvarsi sono riferiti unicamente ai numeri nella _stack_b_
+2. si prende la _stack_b_ e **si calcola la distanza** di ogni numero dalla prima posizione. Banalmente, a seconda che loro si trovino sopra o sotto la posizione `size_b / 2`, si utilizzeranno le mosse `rb` o `rrb`.
+3. si trova nello _stack_a_ il numero _immediatamente maggiore_ a quello preso in considerazione nello _stack_b_. 
+> Aiutatevi col presupposto che **lo _stack_a_ è già ordinato!** Trovate la coppia per il quale `mov_a[i] < mov_b[j] < mov_a[i + 1]`, e mettete `mov_b[i + 1]` in prima posizione. 
+4. si calcola lo stesso valore del passaggio 2, ma riguardante `mov_a[i + 1]`.
+
+Il risultato diventa molto simile a questo:
+```
+MOV_A   MOV_B
+4       0
+-5      1
+3       2
+-1      3
+0       -3
+4       -2
+-5      -1
+```
+dove la colonna B indica la distanza di ogni numero di _stack_b_, mentre la colonna A indica la distanza del numero di _stack_b_ immediatamente maggiore al suo corrispondente in _b_.
+
+===
+
+#### La scelta del numero
+
+Ok, sappiamo tutte le mosse per ogni numero che abbiamo nella stack_b. Ma quale prendiamo?
+La risposta dipende dalle casistiche, a seconda del senso di rotazione del vettore:
+```
+	|	mov_b +		|	mov_b -
+--------|-----------------------|-----------------------
+mov_a +	|   max(mov_a, mov_b)	|   mov_a + |mov_b|
+--------|-----------------------|-----------------------
+mov_a -	|  |mov_a| + mov_b	|  |min(mov_a, mov_b)|
+```
+> Prendo per assodato che ricordiate il valore assoluto...
+In tutti e quattro i casi, il valore rilasciato altro non è che il numero totale di mosse che dovete fare prima di `pa`!
+
+Ma prima occorre sottolineare perché sia necessario prendere il massimo o il minimo dei due valori nel caso dello stesso segno per i due numeri. Se vogliamo ottimizzare al meglio il codice, dobbiamo per forza usufruire delle mosse `rr` e `rrr`, che con una sola riga di output effettuano la rotazione ad entrambi gli stack. Va da sé che dividere per 2 le mosse è un guadagno di tempo che non possiamo lasciarci sfuggire...
+
+Riprendendo quindi l'esempio di cui alla sezione sopra, va da sé che `4   0` diventa meno conveniente di `3   2`, in quanto per il primo si eseguono 4 mosse mentre per il secondo 3.
 
 [WORK IN PROGRESS]
 
