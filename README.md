@@ -19,7 +19,7 @@ Quindi, senza alcun indugio, spieghiamo le particolarità delle richieste!
 ===
 
 #### Le mosse
-Abbiamo anzitutto due *stack*: una riempita dai numeri casuali dati, la "a", e una vuota che ci servirà da appoggio, la "b".
+Abbiamo anzitutto due *stack*: una riempita dai numeri casuali dati, lo _stack_a_, e una vuota che ci servirà da appoggio, la _stack_b_.
 
 Le stack **non** hanno una definizione obbligatoria! Noi abbiamo lavorato a liste per ovviare al fatto che gli array di `int` non hanno un termine nullo di conclusione col quale contarne la lunghezza. 
 Altre idee che abbiamo sentito da colleghi sono quelle di lavorare a strutture, con i due array accompagnati dalle loro size ed eventualmente da altri array di appoggio per i vostri calcoli successivi. Personalmente mi sento di dissuadervi da questa idea semplicemente per non dover gestire troppe allocazioni, ma lascio al vostro giudizio la decisione. Dopotutto, quello che conta è il risultato!
@@ -155,6 +155,24 @@ In tutti e quattro i casi, il valore rilasciato altro non è che il numero total
 Ma prima occorre sottolineare perché sia necessario prendere il massimo o il minimo dei due valori nel caso dello stesso segno per i due numeri. Se vogliamo ottimizzare al meglio il codice, dobbiamo per forza usufruire delle mosse `rr` e `rrr`, che con una sola riga di output effettuano la rotazione ad entrambi gli stack. Va da sé che dividere per 2 le mosse è un guadagno di tempo che non possiamo lasciarci sfuggire...
 
 Riprendendo quindi l'esempio di cui alla sezione sopra, va da sé che `4   0` diventa meno conveniente di `3   2`, in quanto per il primo si eseguono 4 mosse mentre per il secondo 3.
+
+Ovviamente tutti questi calcoli vanno ripetuti `size_b` volte!
+
+***
+
+### CONCLUSIONE CODICE
+
+Una volta effettuate tutte le mosse `pa` possibili, dovreste ritrovarvi in una situazione simile in cui il vettore è ordinato ma non comincia nella giusta posizione:
+
+<img width="773" alt="Screen Shot 2022-02-28 at 14 45 02" src="https://user-images.githubusercontent.com/92301111/155993619-4d3da32d-d4fe-458d-9d80-c39f8e6c8e9e.png">
+
+Ricordatevi di minimizzare le mosse anche qui! O rischierete di perdervi qualche centinaio di mosse nell'ultima parte.
+
+***
+
+Il nostro progetto è così concluso! Fatemi sapere se avete problemi o suggerimenti, sarò ben lieto di discuterne con voi su Slack (@mcerchi) o [via mail](mailto:mcerchi@student.42roma.it).
+
+
 
 [WORK IN PROGRESS]
 
