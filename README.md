@@ -171,8 +171,3 @@ Ricordatevi di minimizzare le mosse anche qui! O rischierete di perdervi qualche
 ***
 
 Il nostro progetto è così concluso! Fatemi sapere se avete problemi o suggerimenti, sarò ben lieto di discuterne con voi su Slack (@mcerchi) o [via mail](mailto:mcerchi@student.42roma.it).
-
-
-
-[WORK IN PROGRESS]
-
