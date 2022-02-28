@@ -9,14 +9,20 @@
 
 Data la mancanza di spiegazioni del progetto attraverso l'utilizzo del **Longest Increasing Suqsequence algorithm** (trad. "algoritmo della maggiore sottosequenza crescente"), ho deciso di scrivere questo README per venire in soccorso a tutti quegli studenti che non hanno ben capito come implementarlo.
 
-#### SUBJECT
+----------------------------
+
+### SUBJECT
 Il progetto richiede di ordinare una qualsiasi sequenza di numeri interi, esattamente come fa un qualsiasi algoritmo Sort ideato e collaudato da almeno 60 anni.
 Tuttavia, non stareste leggendo questo testo se non apparteneste ad un qualsiasi corso della 42 in giro per il mondo, ed è statisticamente appurato che la vostra probabilità di perdere capelli aumenta proporzionalmente al vostro leggere nuovi subject.
 Quindi, senza alcun indugio, spieghiamo le particolarità delle richieste!
 
 
-##### Le mosse
+#### Le mosse
 Abbiamo anzitutto due *stack*: una riempita dai numeri casuali dati, la "a", e una vuota che ci servirà da appoggio, la "b".
+
+Le stack **non** hanno una definizione obbligatoria! Noi abbiamo lavorato a liste per ovviare al fatto che gli array di `int` non hanno un termine nullo di conclusione col quale contarne la lunghezza. 
+Altre idee che abbiamo sentito da colleghi sono quelle di lavorare a strutture, con i due array accompagnati dalle loro size ed eventualmente da altri array di appoggio per i vostri calcoli successivi. Personalmente mi sento di dissuadervi da questa idea semplicemente per non dover gestire troppe allocazioni, ma lascio al vostro giudizio la decisione. Dopotutto, quello che conta è il risultato!
+
 Le mosse a nostra disposizione sono 11, ma per semplicità le andremo a suddividere nelle 4 tipologie:
 
 * sa 	/	sb	/	ss	: _**switch**_, scambia il primo numero della stack col secondo.
@@ -24,17 +30,57 @@ Le mosse a nostra disposizione sono 11, ma per semplicità le andremo a suddivid
 * rra	/	rrb	/	rrr	: ___reverse rotate___, banalmente la stessa cosa di cui sopra ma nel senso opposto.
 * pa	/	pb			: ____push in *___, sposta il numero in prima posizione della stack opposta nella stack nominata. Quindi pb porta il primo numero da _a_ a _b_.
 
-Non starò qui a spiegare per bene come funzionano e come vanno utilizzate, penso che a riguardo ci siano ottimi lavori scritti da colleghe e colleghi in giro per il mondo. Vi lascio un link che ha aiutato me e [il mio compagno di merende](https://github.com/fdrudi, "Go follow him!") durante il brainstorming iniziale.
+Non starò qui a spiegare per bene come funzionano e come vanno utilizzate, penso che a riguardo ci siano ottimi lavori scritti da colleghe e colleghi in giro per il mondo. Vi lascio un link che ha aiutato me e [il mio compagno di merende](https://github.com/fdrudi "Go follow him!") durante il brainstorming iniziale.
 Sappi che le sue istruzioni sono valide anche per il nostro progetto fino alla _size 3_ e _size 5_!
 
-[Ecco a te!](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a, "Ce ne fosse di gente come lui *sigh*")
+[Ecco a te!](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a "Ce ne fosse di gente come lui *sigh*")
 
 Il motivo per cui non abbiamo voluto seguire tutta la sua linea di pensiero è perché purtroppo a nostro parere non si può arrivare al massimo dei voti con una tecnica del genere, ma saremmo ben lieti di essere smentiti! Nel caso in cui il suo ragionamento vi piaccia di più, un altro ragazzo italiano ha pubblicato [questo codice molto simile e super ordinato](https://github.com/AlessandroMetta/push_swap) col quale ha ottenuto un ottimo voto di 90/100. 
 
-_N.b.:	purtroppo senza il massimo dei voti, il bonus non verrà contato. 90/100 è praticamente il secondo miglior voto ottenibile. Vi conviene davvero clonare e pushare senza prima quantomeno provare a prendere qualcosa in più?_
+N.b.:	purtroppo senza il massimo dei voti, il bonus non verrà contato. 90/100 è praticamente il secondo miglior voto ottenibile. Vi conviene davvero clonare e pushare senza prima quantomeno provare a prendere qualcosa in più?
 
 Veniamo ora alla vera bestia di Satana di questo progetto: **il numero di mosse possibili.**
-Se leggete approfonditamente il subject, non troverete comunque un riferimento a riguardo. Vi basta tuttavia sapere che per ottenere il massimo dei voti servono _700 mosse con 100 numeri_ e _5.500 mosse con 500 numeri_.
+Se leggete approfonditamente il subject, non troverete comunque un riferimento a riguardo. Vi basta tuttavia sapere che per ottenere il massimo dei voti servono _700 mosse con 100 numeri_ e _5.500 mosse con 500 numeri_. Abbiamo stimato un 58% di bestemmie sul progetto dedicate soltanto alla loro ottimizzazione.
+Noi abbiamo agito così.
+
+----------------------
+
+### L'ALGORITMO L.I.S.
+
+L'idea di fondo è particolarmente semplice ma non altrettanto facile da pensare senza aiuti da parte di altri.
+Per chi è particolarmente bravo in matematica, la logica è molto simile a quella dei sottoinsiemi ordinati. Per tutti gli altri, partiamo dall'analisi del nome dell'algoritmo:
+* _longest_: fin qui tutto ok, no?
+* _increasing_: letteralmente _"crescente"_
+* _subsequence_: sottosequenza, ossia un gruppo di numeri presi dall'insieme totale, solitamente (ma non necessariamente) con un criterio matematico.
+
+Banalmente, significa che tra tutte le possibili sottosequenze o combinazioni dobbiamo prenderne una ___ordinata___ in maniera ___crescente___, in particolare ___la più lunga di tutte!___
+
+
+
+Facciamo un esempio: abbiamo una serie di numeri casuali come
+
+`4 - 8 - 2 - 9 - 12 - 1 - 27 - 13 - 32 - 10`
+
+Di questi, una _sottosequenza crescente_ può benissimo essere `4 - 8 - 9`, `2 - 9 - 13 - 32` o anche `1 - 10`.
+Il nostro obiettivo tuttavia è  quello di prendere la più lunga possibile, in questo caso:
+
+`4 - 8 - 9 - 12 - 27 - 32` oppure `4 - 8 - 9 - 12 - 13 - 32`. 
+
+Le due sottosequenze sono equivalenti in quanto entrambe sono lunghe 6.
+> Fate caso al mantenimento dell'ordine iniziale! Non possiamo prima mescolare i numeri e poi prenderci i valori che più ci piacciono, o avremmo già ordinato tutto e il nostro lavoro sarebbe finito...
+
+Non è mio compito qui spiegarvi come implementare il codice, l'idea di fondo di fatto è lunga 4 righe di codice (che vi lascio qui sotto) ma il grosso viene nel prendersi tutti i valori desiderati.
+I due cicli necessari sono:
+`for (int i = 1; i < n; i++) 
+{
+	lis[i] = 1;
+	for (int j = 0; j < i; j++)
+	{
+		if (arr[i] > arr[j] && lis[i] < lis[j] + 1)
+			lis[i] = lis[j] + 1;
+	}
+}`
+
 
 [WORK IN PROGRESS]
 
