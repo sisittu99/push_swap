@@ -59,7 +59,7 @@ Banalmente, significa che tra tutte le possibili sottosequenze o combinazioni do
 
 Facciamo un esempio: abbiamo una serie di numeri casuali come
 
-`4 - 8 - 2 - 9 - 12 - 1 - 27 - 13 - 32 - 10`
+```4 - 8 - 2 - 9 - 12 - 1 - 27 - 13 - 32 - 10```
 
 Di questi, una _sottosequenza crescente_ può benissimo essere `4 - 8 - 9`, `2 - 9 - 13 - 32` o anche `1 - 10`.
 Il nostro obiettivo tuttavia è  quello di prendere la più lunga possibile, in questo caso:
@@ -71,7 +71,9 @@ Le due sottosequenze sono equivalenti in quanto entrambe sono lunghe 6.
 
 Non è mio compito qui spiegarvi come implementare il codice, l'idea di fondo di fatto è lunga 4 righe di codice (che vi lascio qui sotto) ma il grosso viene nel prendersi tutti i valori desiderati.
 I due cicli necessari sono:
-`for (int i = 1; i < n; i++) 
+
+```
+for (int i = 1; i < n; i++) 
 {
 	lis[i] = 1;
 	for (int j = 0; j < i; j++)
@@ -79,7 +81,43 @@ I due cicli necessari sono:
 		if (arr[i] > arr[j] && lis[i] < lis[j] + 1)
 			lis[i] = lis[j] + 1;
 	}
-}`
+}
+```
+
+Per aiutarvi nella comprensione dell'algoritmo, vi lascio [il link di GeeksForGeeks](https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/ "Spulciatevi anche i video!") che ci ha aiutato a capire la logica dietro. Prestate attenzione al fatto che loro ritornano soltanto la grandezza massima della sottosequenza...
+
+Una volta trovata la sequenza ordinata, vi rimane soltanto da tenervela sulla _stack_a_ e da portare tutti gli altri numeri sulla _stack_b_.
+
+A fine lavoro vi risulterà una struttura simile:
+
+<img width="769" alt="Screen Shot 2022-02-28 at 11 53 26" src="https://user-images.githubusercontent.com/92301111/155971088-9a4ea247-8a76-4d11-958c-4bca2424fef5.png">
+
+> Ancora non vi ho parlato del visualizer? [Vi tornerà molto utile a fine stesura del codice...](https://github.com/o-reo/push_swap_visualizer)
+
+--------------------------------
+
+> povero gabbiano ha perduto la compagna
+
+---------------------------------
+
+### L'ORDINAMENTO e L'OTTIMIZZAZIONE
+
+Nei passaggi precedenti non ho esternato il motivo per cui cominciamo il progetto calcolando il LIS. Nel caso non lo abbiate capito, l'obiettivo è quello di inserire tutti gli altri numeri in uno stack già ordinato, seppur non completo! Questo ci permette infatti di effettuare scambi tra lo _stack_a_ e lo _stack_b_ soltanto una volta, per poi chiudere subito l'ordinamento.
+Il modo per spostare i numeri puó essere uno soltanto: spostare il primo numero della _stack_b_ di fronte al numero successivamente maggiore dello _stack_a_, che dovrà essere obbligatoriamente messo in prima posizione nello stesso.
+
+Abbiamo tuttavia un problema non banale: inserire sempre il primo numero della _stack_b_ nella _stack_a_ fa roteare quest'ultima a vuoto troppe volte, aumentando esponenzialmente le mosse. 
+> Vi basti sapere che l'algoritmo più banale possibile supera abbondantemente le 100.000 mosse con 500 numeri...
+
+
+Quindi, come ottimizzare?
+
+La nostra soluzione è molto a rischio di TLE (lett. _Time Limit Exceeded_), siamo consapevoli che esistono soluzioni più veloce e meno rischiose, ma siamo estremamente certi che a livello teorico-pratico funzioni e che permetta una delle migliori ottimizzazioni su tutte le possibili.
+Iniziamo!
+
+
+#### IL CALCOLO DELLE MOSSE
+
+Se state immaginando una quindicina di funzioni da scrivere dopo questo titolo, probabilmente avete sottostimato il lavoro che avete ancora di fronte.
 
 
 [WORK IN PROGRESS]
