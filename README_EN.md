@@ -62,5 +62,83 @@ for (int i = 1; i < n; i++)
 	}
 }
 ```
+To help you make out the algorithm, I give you [the link of GeeksForGeeks](https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/ "Watch the videos!") which helped us understand the logic behind it. Be careful: they only return the maximum size of the subsequence...
 
-[WORK IN PROGRESS]
+Once you have found the ordered sequence, all that remains is to keep it on _stack_a_ and to bring all the other numbers to _stack_b_.
+
+At the end of the work you will see a similar structure:
+
+<img width="769" alt="Screen Shot 2022-02-28 at 11 53 26" src="https://user-images.githubusercontent.com/92301111/155971088-9a4ea247-8a76-4d11-958c-4bca2424fef5.png">
+
+> Haven't I told you about the visualizer yet? [It will be very useful at the end of writing the code ...](https://github.com/o-reo/push_swap_visualizer)
+
+# Sorting and optimization
+
+In the previous steps I have not stated why we start the project by calculating the LIS. In case you haven't figured it out, the goal is to put all the other numbers in an already ordered stack, albeit not complete! In fact, this allows us to make exchanges between _stack_a_ and _stack_b_ only once and immediately return the right order.
+
+Now there can be only one way to move the numbers: move the first number of the _stack_b_ in front of the successively greater number of the _stack_a_, which must necessarily be placed in first position. However, we have a non-trivial problem: always inserting the first number of the _stack_b_ in the _stack_a_ causes the latter to spin too many times, exponentially increasing the moves.
+> Suffice it to say, the simplest algorithm far exceeds 100,000 moves with 500 numbers...
+So, how to optimize?
+
+Our solution we propose here is very much at risk of TLE (lit. _Time Limit Exceeded_). We are aware there are faster and less risky solutions, but we also are extremely sure that on a theoretical-practical level it works and that it allows one of the best optimizations on all possible ones.
+But first, maybe it's better to take a break, shall we?
+
+![gerry scotti caffè borbone](https://user-images.githubusercontent.com/92301111/157418321-9fbdbced-83e1-4565-8a45-ed56c204daa3.jpeg)
+## Moves calculation
+
+If you are envisioning about fifteen functions to write after this title, you have probably underestimated the work you still have to face.
+
+There's nothing to say here, you must calculate for each number how many moves you need to do. We reasoned this way:
+
+1. Create two support arrays (`mov_a` and` mov_b` can be fine!) Where to save the values below 😉 Both must have dimension `size_b`: in fact the numbers to be saved refer only to the numbers in _stack_b_. Let me explain worse: since our goal is to bring all the numbers of _b_ into the _a_, we need to calculate how many moves we have to do both to move the number of _b_ to the first position, and to move the _stack_a_ so that we can correctly insert the number of _b_. Therefore, _not only_ to each number of b corresponds a number of moves to arrive in first position and then apply `pa`, _but also_ a number of moves to put the correct number of _a_ in first position, such that _stack_a_ remains ordered with the insertion of the number of _b_.
+2. We then begin to do our calculations: take the _stack_b_ and **calculate the distance** of each number from the first position. Trivially, depending on whether they are above or below the `size_b / 2` position, we will use `rb` or `rrb` moves. The assigned value will be positive if `rb` is to be used, else negative for `rrb` or 0 for no moves.
+3. in _stack_a_ the number _immediately greater_ than the one taken into consideration in _stack_b_ is found. Help yourself with the assumption that ** the _stack_a_ is already sorted! ** Find the pair for which `mov_a[i] < mov_b[j] < mov_a[i + 1]` and put `mov_a[i + 1]` in first position. 
+> Example: if we have to insert a `5` in a _stack_a_ equal to `3 - 8 - 19 - 25`, number `8` will go to the first position. That's what I previously called `mov_a[i + 1]`.
+4. compute the same value as in step 2, but concerning `mov_a[i + 1]`.
+
+Here is a more complex pragmatic example, taken from a real simulation where I had 7 numbers on _stack_b_ and more than 12 numbers on _stack_a_:
+```
+MOV_A   MOV_B
+4       0
+-5      1
+3       2
+-1      3
+0       -3
+4       -2
+-5      -1
+```
+Column B indicates the distance of each number of _stack_b_, while column A indicates the distance of the number of _stack_a_ immediately greater than its corresponding in _b_, the now famous `mov_a[i + 1]`. Let's see now how to get to the practical part of the code!
+
+## Choosing the best number
+
+Ok, we know all the moves for every number we have in stack_b. But which one do we take?
+The answer depends on the case studies, according to the direction of rotation of the vector:
+```
+	|	mov_b +		|	mov_b -
+--------|-----------------------|-----------------------
+mov_a +	|   max(mov_a, mov_b)	|   mov_a + |mov_b|
+--------|-----------------------|-----------------------
+mov_a -	|  |mov_a| + mov_b	|  |min(mov_a, mov_b)|
+```
+> I assume you remember the absolute value...
+
+In all four cases, the released value is the total count of moves you have to do before `pa`!
+
+But first it must be emphasized why, in case of same sign, it is necessary to take the maximum or minimum of the two values. If we want to optimize the code we must necessarily take advantage of `rr` and` rrr` moves, which rotate both stacks with a single output line. It goes without saying, dividing the moves by 2 is a time-saver we cannot miss...
+
+Thus, taking the example from the section above, `4   0` becomes less convenient than `3   2`, as 4 moves are made for the former while 3 moves for the latter.
+
+Obviously all these calculations have to be repeated `size_b` times!
+
+
+# Code conclusion
+
+Once you have done all the possible `pa` moves, you should find yourself in a similar situation where the vector is ordered but does not start in the right position:
+
+<img width="773" alt="Screen Shot 2022-02-28 at 14 45 02" src="https://user-images.githubusercontent.com/92301111/155993619-4d3da32d-d4fe-458d-9d80-c39f8e6c8e9e.png">
+
+Remember to minimize the moves here as well, or you'll risk missing out on a few hundred moves in the last part.
+
+***
+
+Our project is now complete! Let me know if you have any problems or suggestions or translation/grammatical/semantic tips, I'll be happy to discuss them with you on Slack (@mcerchi) or [via mail] (mailto: mcerchi@student.42roma.it).
