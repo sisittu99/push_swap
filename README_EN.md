@@ -2,7 +2,8 @@
 ### L.I.S. algorithm (vers. 02/22)
 grade: 125/100
 
-🇬🇧
+# 🇬🇧🇺🇸
+
 Given the lack of solutions of the project through the use of the **Longest Increasing Suqsequence algorithms**, I decided to write this README to help all those students who do not have figured out how to implement it.
 
 # The subject
