@@ -152,4 +152,4 @@ Remember to minimize the moves here as well, or you'll risk missing out on a few
 
 ***
 
-Our project is now complete! Let me know if you have any problems or suggestions or translation/grammatical/semantic tips, I'll be happy to discuss them with you on Slack (@mcerchi) or [via mail] (mailto: mcerchi@student.42roma.it).
+Our project is now complete! Let me know if you have any problems or suggestions or translation/grammatical/semantic tips, I'll be happy to discuss them with you on Slack (@mcerchi) or [via mail](mailto: mcerchi@student.42roma.it).
