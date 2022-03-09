@@ -2,6 +2,9 @@
 ### L.I.S. algorithm (vers. 02/22)
 grade: 125/100
 
+# 🇬🇧🇺🇸
+Looking for a translated version? Just [click here!](https://github.com/sisittu99/push_swap/blob/master/README_EN.md)
+
  # 🇮🇹 
 
 Data la mancanza di spiegazioni del progetto attraverso l'utilizzo del **Longest Increasing Suqsequence algorithm** (trad. "algoritmo della maggiore sottosequenza crescente"), ho deciso di scrivere questo README per venire in soccorso a tutti quegli studenti che non hanno ben capito come implementarlo.
@@ -135,6 +138,7 @@ mov_a +	|   max(mov_a, mov_b)	|   mov_a + |mov_b|
 mov_a -	|  |mov_a| + mov_b	|  |min(mov_a, mov_b)|
 ```
 > Prendo per assodato che ricordiate il valore assoluto...
+
 In tutti e quattro i casi, il valore rilasciato altro non è che il numero totale di mosse che dovete fare prima di `pa`!
 
 Ma prima occorre sottolineare perché sia necessario prendere il massimo o il minimo dei due valori nel caso dello stesso segno per i due numeri. Se vogliamo ottimizzare al meglio il codice, dobbiamo per forza usufruire delle mosse `rr` e `rrr`, che con una sola riga di output effettuano la rotazione ad entrambi gli stack. Va da sé che dividere per 2 le mosse è un guadagno di tempo che non possiamo lasciarci sfuggire...
