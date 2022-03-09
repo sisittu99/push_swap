@@ -6,6 +6,15 @@ grade: 125/100
 
 Given the lack of solutions of the project through the use of the **Longest Increasing Suqsequence algorithms**, I decided to write this README to help all those students who do not have figured out how to implement it.
 
+1. [The subject](https://github.com/sisittu99/push_swap/blob/master/README_EN.md#the-subject)
+2. [Moves](https://github.com/sisittu99/push_swap/blob/master/README_EN.md#moves)
+3. [The L.I.S. algorithm](https://github.com/sisittu99/push_swap/blob/master/README_EN.md#the-lis-algorithm)
+4. [Sorting and optimization](https://github.com/sisittu99/push_swap/blob/master/README_EN.md#sorting-and-optimization)
+- [Moves calculation](https://github.com/sisittu99/push_swap/blob/master/README_EN.md#moves-calculation)
+- [Choosing the best number](https://github.com/sisittu99/push_swap/blob/master/README_EN.md#choosing-the-best-number)
+5. [Code conclusion](https://github.com/sisittu99/push_swap/blob/master/README_EN.md#code-conclusion)
+ 	
+
 # The subject
 The project requires you to sort any sequence of integers, just as any sort algorithm has been designed and tested for the last 60 years.
 However, you wouldn't be reading this if you didn't belong to any 42 course around the world, and it's statistically proven that your likelihood of losing hair increases proportionally to your reading new subjects. So let's see what's wrong with this one.
