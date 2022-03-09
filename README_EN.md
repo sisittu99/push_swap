@@ -27,7 +27,7 @@ Just know his instructions are valid for our project too, but only up to _size 3
 
 > The reason why we did not want to follow his entire line of thought is because unfortunately in our opinion you cannot get the highest marks with such a technique, but we would be happy to be proven wrong! In case you like his reasoning more than ours, another Italian guy posted [this very similar and super tidy code](https://github.com/AlessandroMetta/push_swap) with which he obtained an excellent score of 90/100. 
 
-We now come to the real trouble of this project: ** the number of possible moves. **
+We now come to the real trouble of this project: **the number of possible moves.**
 If you read the subject thoroughly, you will not find a reference to it anywhere. However, you just need to know that to get the highest marks you need _700 moves with 100 numbers_ and _5.500 moves with 500 numbers_. We have estimated a 58% of curses on the project entirely dedicated to their optimization.
 We have done so.
 
