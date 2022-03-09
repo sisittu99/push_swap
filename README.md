@@ -95,23 +95,22 @@ Abbiamo tuttavia un problema non banale: inserire sempre il primo numero della _
 Quindi, come ottimizzare?
 
 La nostra soluzione è molto a rischio di TLE (lett. _Time Limit Exceeded_), siamo consapevoli che esistono soluzioni più veloce e meno rischiose, ma siamo estremamente certi che a livello teorico-pratico funzioni e che permetta una delle migliori ottimizzazioni su tutte le possibili.
-Iniziamo!
+Ma prima, forse è meglio prendersi una pausa, che ne dici?
 
 
+![gerry scotti caffè borbone](https://user-images.githubusercontent.com/92301111/157418321-9fbdbced-83e1-4565-8a45-ed56c204daa3.jpeg)
 ## Il calcolo delle mosse
 
 Se state immaginando una quindicina di funzioni da scrivere dopo questo titolo, probabilmente avete sottostimato il lavoro che avete ancora di fronte.
 
-Non c'è molto da fare: dovete calcolarvi per ogni numero quante mosse dovete fare nel migliore dei casi. Molti miei colleghi hanno utilizzato questa logica ragionando così:
+Non c'è molto da fare: dovete calcolarvi per ogni numero quante mosse dovete fare nel migliore dei casi. Abbiamo ragionato così:
 
-1. Create due array di appoggio (`mov_a` e `mov_b` possono andare benissimo!) dove salvare i valori di cui sotto 😉 
-> Entrambi devono avere dimensione `size_b`: infatti i numeri da salvarsi sono riferiti unicamente ai numeri nella _stack_b_
-2. si prende la _stack_b_ e **si calcola la distanza** di ogni numero dalla prima posizione. Banalmente, a seconda che loro si trovino sopra o sotto la posizione `size_b / 2`, si utilizzeranno le mosse `rb` o `rrb`.
-3. si trova nello _stack_a_ il numero _immediatamente maggiore_ a quello preso in considerazione nello _stack_b_. 
-> Aiutatevi col presupposto che **lo _stack_a_ è già ordinato!** Trovate la coppia per il quale `mov_a[i] < mov_b[j] < mov_a[i + 1]`, e mettete `mov_a[i + 1]` in prima posizione. 
+1. Create due array di appoggio (`mov_a` e `mov_b` possono andare benissimo!) dove salvare i valori di cui sotto 😉 Entrambi devono avere dimensione `size_b`: infatti i numeri da salvarsi sono riferiti unicamente ai numeri nella _stack_b_. Mi spiego peggio: siccome il nostro obiettivo è riportare tutti i numeri di _b_ nella _a_, dobbiamo calcolare quante mosse dobbiamo fare sia per muovere il numero di _b_ in prima posizione, sia per muovere lo _stack_a_ in modo tale da poter inserire correttamente il numero di _b_. Conseguentemente, ad ogni numero di b corrisponde _non solo_ un tot di mosse per arrivare in prima posizione ed applicare quindi `pa`, _ma anche_ un tot di mosse per mettere in prima posizione il numero corretto di _a_, tale per cui con l'inserimento del numero di _b_ la _stack_a_ rimanga ordinata.
+2. Cominciamo quindi a fare i nostri calcoli: si prende la _stack_b_ e **si calcola la distanza** di ogni numero dalla prima posizione. Banalmente, a seconda che loro si trovino sopra o sotto la posizione `size_b / 2`, si utilizzeranno le mosse `rb` o `rrb`. Il valore assegnato sarà positivo se bisogna utilizzare `rb`, negativo se bisogna utilizzare `rrb`. 
+3. si trova nello _stack_a_ il numero _immediatamente maggiore_ a quello preso in considerazione nello _stack_b_. Aiutatevi col presupposto che **lo _stack_a_ è già ordinato!** Trovate la coppia per il quale `mov_a[i] < mov_b[j] < mov_a[i + 1]` e mettete `mov_a[i + 1]` in prima posizione. Esempio: se abbiamo da inserire un `5` in uno _stack_a_ uguale a `3 - 8`, sarà l'`8` ad andare in prima posizione.
 4. si calcola lo stesso valore del passaggio 2, ma riguardante `mov_a[i + 1]`.
 
-Il risultato diventa molto simile a questo:
+Vi porto un esempio pragmatico più complesso, preso da una simulazione reale in cui avevo 7 numeri sullo _stack_b_ e più di 12 numeri sullo _stack_a_:
 ```
 MOV_A   MOV_B
 4       0
@@ -122,7 +121,7 @@ MOV_A   MOV_B
 4       -2
 -5      -1
 ```
-dove la colonna B indica la distanza di ogni numero di _stack_b_, mentre la colonna A indica la distanza del numero di _stack_b_ immediatamente maggiore al suo corrispondente in _b_.
+La colonna B indica la distanza di ogni numero di _stack_b_, mentre la colonna A indica la distanza del numero di _stack_a_ immediatamente maggiore al suo corrispondente in _b_. Vediamo ora come arrivare all'atto pratico!
 
 ## La scelta del numero
 
