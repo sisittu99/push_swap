@@ -8,7 +8,13 @@ Looking for a translated version? Just [click here!](https://github.com/sisittu9
  # 🇮🇹 
 
 Data la mancanza di spiegazioni del progetto attraverso l'utilizzo del **Longest Increasing Suqsequence algorithm** (trad. "algoritmo della maggiore sottosequenza crescente"), ho deciso di scrivere questo README per venire in soccorso a tutti quegli studenti che non hanno ben capito come implementarlo.
-
+1. [Il subject](https://github.com/sisittu99/push_swap#il-subject)
+2. [Le mosse](https://github.com/sisittu99/push_swap#le-mosse)
+3. [L'algoritmo L.I.S.](https://github.com/sisittu99/push_swap#lalgoritmo-lis)
+4. [L'ordinamento e l'ottimizzazione](https://github.com/sisittu99/push_swap#lordinamento-e-lottimizzazione)
+- [Il calcolo delle mosse](https://github.com/sisittu99/push_swap#il-calcolo-delle-mosse)
+- [La scelta del numero](https://github.com/sisittu99/push_swap#la-scelta-del-numero)
+5. [Conclusione codice](https://github.com/sisittu99/push_swap#conclusione-codice)
 
 # Il subject
 Il progetto richiede di ordinare una qualsiasi sequenza di numeri interi, esattamente come fa un qualsiasi algoritmo Sort ideato e collaudato da almeno 60 anni.
